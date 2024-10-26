@@ -29,7 +29,7 @@ import { useTypeCofeTwo } from "../../store/store";
 export default function Flavors() {
   const [Hints, SetHints] = useState(false);
   const [cofePafe, setCofePage] = useState(false);
-  const useTypeCofeTwoFunckk = useTypeCofeTwo(
+  const typeCofeTwoFunckk = useTypeCofeTwo(
     (state) => state.useTypeCofeTwoFunckk
   );
 
@@ -93,8 +93,8 @@ export default function Flavors() {
 
   useEffect(() => {
     // Тут ви можете викликати функцію або обробляти selectedText
-    useTypeCofeTwoFunckk(selectedText);
-  }, [selectedText, useTypeCofeTwoFunckk]);
+    typeCofeTwoFunckk(selectedText);
+  }, [selectedText, typeCofeTwoFunckk]);
 
   const handleClick = (text: string) => {
     setSelectedText((prev: string[]) => {
