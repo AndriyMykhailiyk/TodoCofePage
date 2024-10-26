@@ -1,0 +1,157 @@
+.line66 {
+  background-color: #bd6228;
+  height: 5px;
+  width: 66%;
+}
+.ColorWrapper {
+  flex-direction: column;
+  display: flex;
+}
+.firstColor1,
+.firstColor2,
+.firstColor3,
+.firstColor4,
+.firstColor5 {
+  width: calc(100% / 3);
+  padding: 1em;
+  border: 1px solid rgb(189, 189, 189);
+}
+
+.firstColor1 {
+  background-color: #e8f1ee;
+}
+.setBasilCofe,
+.setOliveoil,
+.setThyme {
+  width: calc(100% / 3);
+  padding: 1em;
+  border: 1px solid rgb(189, 189, 189);
+  background-color: #8affd8;
+}
+
+.setLemon_Lime,
+.setGreen_apple,
+.setBrown_sugar {
+  width: calc(100% / 3);
+  padding: 1em;
+  border: 1px solid rgb(189, 189, 189);
+  background-color: #ffc17e;
+}
+
+.setBlueberry,
+.setCherrys,
+.setOrange_blossom {
+  width: calc(100% / 3);
+  padding: 1em;
+  border: 1px solid rgb(189, 189, 189);
+  background-color: #ffaa86;
+}
+
+.setDark_chocolate,
+.setHazelnut,
+.setCaramel {
+  width: calc(100% / 3);
+  padding: 1em;
+  border: 1px solid rgb(189, 189, 189);
+  background-color: #6e5d4f;
+}
+
+.setFig,
+.setClove,
+.setRed_wine {
+  width: calc(100% / 3);
+  padding: 1em;
+  border: 1px solid rgb(189, 189, 189);
+  background-color: #ab86b8;
+}
+
+.firstColor1:hover {
+  cursor: pointer;
+  background-color: #c0dfd5;
+}
+.firstColor2 {
+  background-color: #f5e7d8;
+}
+.firstColor2:hover {
+  cursor: pointer;
+  background-color: #edd0b0;
+}
+
+.firstColor3 {
+  background-color: #f2e0d8;
+}
+
+.firstColor3:hover {
+  cursor: pointer;
+  background-color: #e5bba8;
+}
+.firstColor4 {
+  background-color: #e3ddd8;
+}
+
+.firstColor4:hover {
+  cursor: pointer;
+  background-color: #a39b95;
+}
+.firstColor5 {
+  background-color: #ede7ef;
+}
+
+.firstColor5:hover {
+  cursor: pointer;
+  background-color: #b3a1b9;
+}
+.wtapperBack {
+  cursor: pointer;
+  display: flex;
+}
+
+.backgroundColorSectionfaves {
+  padding: 1.5em 5em;
+  width: 100vw;
+  padding-right: 20em;
+  color: brown;
+  background-color: white;
+}
+.Elfaves {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+.BackBtn {
+  padding-bottom: 4em;
+}
+.wrapperfirstColor {
+  display: flex;
+}
+
+.BasilCofeclass {
+  color: black;
+}
+.Ul-TasteCofe {
+  padding-bottom: 10px;
+  max-width: 170px;
+}
+.textTaste {
+  cursor: pointer;
+  border-radius: 50px;
+  background-color: #d8d8d8;
+  align-items: center;
+  padding-right: 1em;
+  font-weight: 500;
+  padding: 1.1em 1.2em;
+  color: black;
+  display: flex;
+  max-width: 180px;
+  justify-content: space-between;
+  list-style-type: none;
+}
+.trashSvg {
+  cursor: pointer;
+}
+
+.close {
+  display: grid;
+  grid-template-columns: repeat(3, 0.4fr);
+}

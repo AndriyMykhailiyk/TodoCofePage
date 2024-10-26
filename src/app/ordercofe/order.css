@@ -1,0 +1,169 @@
+.wrapperOrderCofe {
+  background-color: white;
+  color: black;
+}
+.Header {
+  background-color: #f7f6f1;
+}
+.wrapperheader {
+  display: flex;
+  justify-content: center;
+  padding: 4em 10em;
+}
+.HeaderTextCofe {
+  color: #937031;
+  font-size: 63px;
+}
+.wrapperMeSection {
+  display: flex;
+  justify-content: center;
+  padding: 2em 20em;
+}
+.PhotoSection {
+  padding-right: 5em;
+  display: flex;
+  justify-content: center;
+}
+
+.headerTextMeCofe {
+  font-size: 28px;
+}
+.wrapper-Prisereting {
+  padding-bottom: 3em;
+  justify-content: space-between;
+  display: flex;
+}
+.AboutMeCoffe {
+  width: 20vw;
+  padding: 2.5em 0em;
+}
+
+.headerTextMeCofe {
+  margin-bottom: 1em;
+}
+.priseTag {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.ratingTag {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+.gradText {
+  font-family: grad, serif;
+}
+.NexPageBtn {
+  font-size: clamp(12px, 2vw, 18px); /* Динамічний розмір шрифту */
+  white-space: nowrap; /* Запобігає переносу тексту */
+  border: transparent;
+  color: white;
+  background-color: #78542e;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 1em 7em;
+  line-height: 16px;
+}
+
+.line99 {
+  background-color: #bd6228;
+  height: 5px;
+  width: 100%;
+}
+.rating {
+  display: flex;
+  align-items: center;
+}
+.BtnSec9090 {
+  padding-bottom: 3em;
+  padding-top: 2em;
+}
+.wtapperBack {
+  font-style: normal;
+  color: #d27487;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.IoIosArrowRoundForward {
+  padding-left: 2px;
+}
+.WrapperDetailsSection {
+  color: black;
+  padding: 2em 25em;
+}
+
+.TextDesk {
+  padding-bottom: 1em;
+  font-size: 30px;
+}
+
+.aboutCofeText {
+  padding-top: 2em;
+}
+.MainText {
+  flex-direction: row;
+  padding-bottom: 1.5em;
+  display: flex;
+}
+.CofeType2 {
+  width: 20vw;
+  font-weight: 500;
+  font-size: 22px;
+  padding-right: 5em;
+}
+.CofeType3 {
+  font-family: grad, serif;
+  font-size: 19px;
+}
+
+.CofeType {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.wrapperHeaderCoffeOreder {
+  display: flex;
+  padding: 0 4em;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+}
+
+.HeaderText23 {
+  font-weight: 700;
+  font-style: normal;
+  cursor: pointer;
+  color: #d27487;
+  letter-spacing: 2px;
+  font-size: 50px;
+}
+
+.wrapperHeaderText {
+  flex-grow: 1;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.sectionmeCoffe {
+  height: 100vh;
+}
+.HeaderComponent {
+  width: 100%;
+  z-index: 10; /* Поставте більше значення, щоб header був зверху */
+  position: fixed;
+  background-color: white; /* Задній фон для видимості */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Легка тінь для відокремлення */
+}
+.wrapperMeOrder {
+  padding-top: 73px;
+}
+
+.wrapperFootter {
+  padding-top: 1em;
+}

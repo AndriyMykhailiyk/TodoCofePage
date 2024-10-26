@@ -163,3 +163,79 @@ a.secondary {
     filter: invert();
   }
 }
+.wrapperMain {
+  background-color: #4a2b33;
+  width: 100%; /* Ширина на весь екран */
+  margin: 0; /* Скидання відступів */
+  padding: 0em 2em; /* Скидання падінгів */
+  overflow: hidden;
+}
+
+.wrapperbackground {
+  height: 100vh; /* Висота на весь екран */
+  width: 100%; /* Ширина на весь екран */
+  margin: 0; /* Скидання відступів */
+  padding: 0; /* Скидання падінгів */
+  overflow: hidden;
+  background-color: red;
+}
+.Ul {
+  font-style: normal;
+  gap: 20px;
+  display: flex;
+  list-style-type: none;
+}
+.ByCofe {
+  cursor: pointer;
+  font-style: normal;
+  font-size: 23px;
+  color: #d27487;
+  font-weight: 600;
+}
+
+.ByCofe:hover {
+  cursor: pointer;
+  font-style: normal;
+  font-size: 23px;
+  color: #7b3543;
+  font-weight: 600;
+}
+
+.ulLi {
+  display: flex;
+  align-items: center;
+  line-height: 24px;
+  color: #d27487;
+  font-weight: 400;
+  font-size: 15px;
+}
+.Header {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  justify-content: space-between;
+  display: flex;
+}
+.HeaderTextWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.SocBlock {
+  display: flex;
+  align-items: center;
+}
+.HeaderText {
+  cursor: pointer;
+  color: #d27487;
+  line-height: 25px;
+  letter-spacing: 2px;
+  font-size: 50px;
+}
+.menuelsvg {
+  cursor: pointer;
+  font-size: 12px;
+}
+.photoback {
+  display: block;
+  width: 100%;
+}

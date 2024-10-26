@@ -1,0 +1,33 @@
+.wrapperAword {
+  background-color: #4a2b33;
+  padding: 120px 30px;
+}
+.content-isideAword {
+  justify-content: space-between;
+  display: flex;
+  padding: 0px 25px;
+}
+
+.headerTextAword {
+  font-size: 47px;
+
+  color: #d27487;
+  font-weight: 600;
+  line-height: 62.6px;
+  font-family: "Azeret Mono";
+}
+
+.SubheaderTextAword {
+  color: #d27487;
+  font-size:1.7em;
+  line-height: 40px;
+
+  font-weight: normal;
+}
+
+
+.wrapperSubheaderTextAword {
+  width: 50%;
+  font-weight: normal;
+
+}

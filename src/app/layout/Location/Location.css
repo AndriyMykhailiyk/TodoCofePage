@@ -1,0 +1,45 @@
+.wrapperLocation {
+  color: white;
+  padding: 7.5em 3.5em;
+  background-color: #aa9e54;
+}
+
+.HeaderTextLocation {
+  padding-bottom: 0.5em;
+  font-size: 17px;
+  display: flex;
+  font-weight: 700;
+  line-height: 21.6px;
+  font-family: "Azeret Mono";
+}
+.MainWrapper {
+  justify-content: space-around;
+  flex-direction: row;
+  display: flex;
+}
+
+.SubHeaderTextLocation {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.wrapperHourd {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.wrapperLocatiob {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapperMondays {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}

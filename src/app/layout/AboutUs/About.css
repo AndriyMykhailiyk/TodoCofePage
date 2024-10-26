@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&display=swap");
+
+.wrapperAbout {
+  padding: 220px 270px;
+  background-color: white;
+  --shine-deg: 45deg;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background-repeat: no-repeat;
+  background-position: -100% 0, 0 0;
+
+  background-image: linear-gradient(
+    var(--shine-deg),
+    transparent 20%,
+    transparent 40%,
+    rgb(68, 68, 68, 0.2) 50%,
+    rgb(68, 68, 68, 0.2) 55%,
+    transparent 70%,
+    transparent 100%
+  );
+
+  background-size: 250% 250%, 100% 100%;
+  transition: background-position 0s ease;
+}
+
+.wrapperAbout:hover {
+  background-position: 200%0, 0 0;
+  transition-duration: 1.5s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.content-iside {
+  color: black;
+}
+.headerTextAbout {
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  line-height: 21.6px;
+  font-family: "Azeret Mono";
+  align-items: center;
+}
+
+.headerTextMenu {
+  line-height: 44px;
+  font-size: 32px;
+  font-weight: 100;
+  align-items: center;
+}
+.SubheaderTextAbout {
+  font-size: 32px;
+  display: flex;
+  justify-content: center;
+  font-weight: 100;
+
+  align-items: center;
+}

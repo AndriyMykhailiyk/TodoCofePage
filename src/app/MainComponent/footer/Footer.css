@@ -1,0 +1,39 @@
+.wrapperFooter {
+  padding: 52px 70px 16px 70px;
+}
+.wrapper-ul-fotter {
+  color: black;
+  display: flex;
+  gap: 32px;
+  flex: 1 1 150px; /* Ширина кожного елемента приблизно 150px */
+  text-align: center;
+  margin: 10px 0;
+  list-style-type: none;
+}
+
+.a-el {
+  font-style: normal;
+}
+.a-el {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 21px;
+  font-family: "Inter";
+}
+.content-iside {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.SocBlock {
+  color: black;
+  padding-bottom: 16px;
+}
+.DownBlock {
+  color: #6d6b67;
+}
+.noCopiratingEl {
+  display: flex;
+  align-items: center;
+}
