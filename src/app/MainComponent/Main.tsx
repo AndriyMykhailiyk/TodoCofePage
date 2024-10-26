@@ -2,7 +2,6 @@ import "../page.module.css";
 import styles from "../page.module.css";
 import BackgroundPhoto from "../PhotoPholder/IMAGE.png";
 import Header from "./HeaderComponents/header/header";
-import Image from "next/image";
 const Main = () => {
   return (
     <>

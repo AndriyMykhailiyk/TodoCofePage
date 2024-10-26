@@ -91,6 +91,11 @@ export default function Flavors() {
     setNextPage(true);
   };
 
+  useEffect(() => {
+    // Тут ви можете викликати функцію або обробляти selectedText
+    useTypeCofeTwoFunckk(selectedText);
+  }, [selectedText, useTypeCofeTwoFunckk]);
+
   const handleClick = (text: string) => {
     setSelectedText((prev: string[]) => {
       // Якщо текст вже є в масиві, видалити його
@@ -109,13 +114,10 @@ export default function Flavors() {
     });
 
     // Викликати функцію з useTypeCofeTwo з вибраним смаком
-    useTypeCofeTwoFunckk(selectedText);
   };
 
   const clearIndividualFlavor = (flavor: string) => {
     setSelectedText((prev: string[]) => prev.filter((t) => t !== flavor));
-
-    useTypeCofeTwoFunckk(selectedText);
 
     switch (flavor) {
       case "Basil":
@@ -212,26 +214,9 @@ export default function Flavors() {
 
   const toggleFlavor = (
     flavor: boolean,
-    setFlavor: {
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (value: SetStateAction<boolean>): void;
-      (arg0: (prev: any) => boolean): void;
-    }
+    setFlavor: React.Dispatch<SetStateAction<boolean>>
   ) => {
-    setFlavor((prev: any) => !prev);
+    setFlavor((prev: boolean) => !prev);
   };
 
   return (
