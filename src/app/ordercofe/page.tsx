@@ -25,32 +25,33 @@ export default function OrderCofe() {
   };
 
   useEffect(() => {
-    const newCoffeeOrder = {
-      DarkChoko,
-      Cofeinnn,
-      TypeCofeTwo,
-      HowyouLikedCofe,
-    };
+    if (typeof window !== "undefined") {
+      const newCoffeeOrder = {
+        DarkChoko,
+        Cofeinnn,
+        TypeCofeTwo,
+        HowyouLikedCofe,
+      };
 
-    // Змінюємо масив, якщо у вас має бути лише останній об'єкт
-    const updatedOrders = [newCoffeeOrder]; // або coffeeOrders.push(newCoffeeOrder) для додавання до вже існуючих
-
-    // Оновлюємо localStorage з новим масивом об'єктів кави
-    localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
+      const updatedOrders = [newCoffeeOrder];
+      localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
+    }
   }, [DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe]);
 
   useEffect(() => {
-    const SavedDarkChoko = localStorage.getItem("DarkChoko");
-    const SavedCofeinnn = localStorage.getItem("Cofeinnn");
-    const SavedTypeCofeTwo = localStorage.getItem("TypeCofeTwo");
-    const SavedHowyouLikedCofe = localStorage.getItem("HowyouLikedCofe");
+    if (typeof window !== "undefined") {
+      const SavedDarkChoko = localStorage.getItem("DarkChoko");
+      const SavedCofeinnn = localStorage.getItem("Cofeinnn");
+      const SavedTypeCofeTwo = localStorage.getItem("TypeCofeTwo");
+      const SavedHowyouLikedCofe = localStorage.getItem("HowyouLikedCofe");
 
-    if (SavedDarkChoko) useTypeCofe.setState({ DarkChoko: SavedDarkChoko });
-    if (SavedCofeinnn) useTypeCofe.setState({ Cofeinnn: SavedCofeinnn });
-    if (SavedTypeCofeTwo)
-      useTypeCofeTwo.setState({ TypeCofeTwo: JSON.parse(SavedTypeCofeTwo) });
-    if (SavedHowyouLikedCofe)
-      useLiked.setState({ HowyouLikedCofe: SavedHowyouLikedCofe });
+      if (SavedDarkChoko) useTypeCofe.setState({ DarkChoko: SavedDarkChoko });
+      if (SavedCofeinnn) useTypeCofe.setState({ Cofeinnn: SavedCofeinnn });
+      if (SavedTypeCofeTwo)
+        useTypeCofeTwo.setState({ TypeCofeTwo: JSON.parse(SavedTypeCofeTwo) });
+      if (SavedHowyouLikedCofe)
+        useLiked.setState({ HowyouLikedCofe: SavedHowyouLikedCofe });
+    }
   }, []);
 
   return (
