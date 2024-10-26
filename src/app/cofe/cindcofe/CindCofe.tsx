@@ -12,7 +12,7 @@ import Header from "../../MainComponent/HeaderComponents/header/header";
 import { useLiked } from "../../store/cindstore";
 export default function CindCofe() {
   const [cofePafe, setCofePage] = useState(false);
-  const usePopularFn = useLiked((state) => state.usePopularFn);
+  const popularFn = useLiked((state) => state.usePopularFn);
   const setHowYouLikedCofe = useLiked((state) => state.setHowYouLikedCofe);
   const [Popular, SetPopular] = useState(
     localStorage.getItem("PopularItem") === "false"
@@ -38,15 +38,15 @@ export default function CindCofe() {
     SetTrend(TrendItem);
     SetCofein(LikedItem);
     if (PopularItem) {
-      usePopularFn("Популярна кава");
+      popularFn("Популярна кава");
     } else if (NewItem) {
-      usePopularFn("Новинка");
+      popularFn("Новинка");
     } else if (TrendItem) {
-      usePopularFn("Втренді");
+      popularFn("Втренді");
     } else if (LikedItem) {
-      usePopularFn("Мені таке подобається");
+      popularFn("Мені таке подобається");
     }
-  }, [usePopularFn]);
+  }, [popularFn]);
 
   useEffect(() => {
     localStorage.setItem("PopularItem", JSON.stringify(Popular));
@@ -64,7 +64,7 @@ export default function CindCofe() {
     SetNew(false);
     SetTrend(false);
     SetCofein(false);
-    usePopularFn("Популярна кава");
+    popularFn("Популярна кава");
     setHowYouLikedCofe("Мені подобається те що популярне");
   };
 
@@ -73,7 +73,7 @@ export default function CindCofe() {
     SetNew(true);
     SetTrend(false);
     SetCofein(false);
-    usePopularFn("Новинка");
+    popularFn("Новинка");
     setHowYouLikedCofe("Мені подобається нова кава");
   };
 
@@ -82,7 +82,7 @@ export default function CindCofe() {
     SetNew(false);
     SetTrend(true);
     SetCofein(false);
-    usePopularFn("Втренді");
+    popularFn("Втренді");
     setHowYouLikedCofe("Мені подобається те що в тренді");
   };
 
@@ -91,7 +91,7 @@ export default function CindCofe() {
     SetNew(false);
     SetTrend(false);
     SetCofein(true);
-    usePopularFn("Мені таке подобається");
+    popularFn("Мені таке подобається");
     setHowYouLikedCofe("Мені привабливість");
   };
 
