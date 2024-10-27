@@ -24,33 +24,29 @@ export default function OrderCofe() {
     setDescription(!descruption);
   };
 
+  // Збереження даних у localStorage
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const newCoffeeOrder = {
-        DarkChoko,
-        Cofeinnn,
-        TypeCofeTwo,
-        HowyouLikedCofe,
-      };
+    const coffeeOrder = {
+      DarkChoko,
+      Cofeinnn,
+      TypeCofeTwo,
+      HowyouLikedCofe,
+    };
 
-      const updatedOrders = [newCoffeeOrder];
-      localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
-    }
+    localStorage.setItem("CoffeeOrder", JSON.stringify(coffeeOrder));
   }, [DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe]);
 
+  // Відновлення даних з localStorage
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const SavedDarkChoko = localStorage.getItem("DarkChoko");
-      const SavedCofeinnn = localStorage.getItem("Cofeinnn");
-      const SavedTypeCofeTwo = localStorage.getItem("TypeCofeTwo");
-      const SavedHowyouLikedCofe = localStorage.getItem("HowyouLikedCofe");
+    const savedOrder = localStorage.getItem("CoffeeOrder");
 
-      if (SavedDarkChoko) useTypeCofe.setState({ DarkChoko: SavedDarkChoko });
-      if (SavedCofeinnn) useTypeCofe.setState({ Cofeinnn: SavedCofeinnn });
-      if (SavedTypeCofeTwo)
-        useTypeCofeTwo.setState({ TypeCofeTwo: JSON.parse(SavedTypeCofeTwo) });
-      if (SavedHowyouLikedCofe)
-        useLiked.setState({ HowyouLikedCofe: SavedHowyouLikedCofe });
+    if (savedOrder) {
+      const { DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe } =
+        JSON.parse(savedOrder);
+
+      useTypeCofe.setState({ DarkChoko, Cofeinnn });
+      useTypeCofeTwo.setState({ TypeCofeTwo });
+      useLiked.setState({ HowyouLikedCofe });
     }
   }, []);
 
@@ -165,6 +161,13 @@ export default function OrderCofe() {
               ) : null}
             </div>
           </section>
+
+          <div className="wrapperdiscount">
+            <h1 className="discountTextCofe">
+              Отримай знизку в 15% з промокодом{" "}
+              <span className="Diskount">CofeTop</span>
+            </h1>
+          </div>
         </section>
       </div>
       <div className="wrapperFootter">

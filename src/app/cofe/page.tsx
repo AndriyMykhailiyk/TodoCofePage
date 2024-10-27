@@ -1,16 +1,30 @@
 "use client";
-import { useState, useEffect } from "react";
-import Flavors from "./flavors/flavors";
-import Footer from "../MainComponent/footer/Footer";
+import { useState, useEffect, lazy, Suspense } from "react";
 import "./Cofe.css";
-import { FaPlus } from "react-icons/fa6";
-import { PiCoffeeBean } from "react-icons/pi";
-import { TbCoffeeOff } from "react-icons/tb";
-import { BsFillLightningChargeFill } from "react-icons/bs";
-import Header from "../MainComponent/HeaderComponents/header/header";
+const FaPlus = lazy(() =>
+  import("react-icons/fa6").then((module) => ({ default: module.FaPlus }))
+);
+const PiCoffeeBean = lazy(() =>
+  import("react-icons/pi").then((module) => ({ default: module.PiCoffeeBean }))
+);
+const TbCoffeeOff = lazy(() =>
+  import("react-icons/tb").then((module) => ({ default: module.TbCoffeeOff }))
+);
+const BsFillLightningChargeFill = lazy(() =>
+  import("react-icons/bs").then((module) => ({
+    default: module.BsFillLightningChargeFill,
+  }))
+);
+
 import { useTypeCofe } from "../store/store";
 
 export default function Cofe() {
+  const Flavors = lazy(() => import("./flavors/flavors"));
+  const Footer = lazy(() => import("../MainComponent/footer/Footer"));
+  const Header = lazy(
+    () => import("../MainComponent/HeaderComponents/header/header")
+  );
+
   const [flavors, SetFlavors] = useState(false);
   const [oneOfThree] = useState(1);
   const increaseCount = useTypeCofe((state) => state.increaseCount); // отримання функції
@@ -110,150 +124,156 @@ export default function Cofe() {
 
   return (
     <>
-      <section className="wrapper">
-        {flavors ? (
-          <Flavors />
-        ) : (
-          <section className="FullWrapper">
-            <Header />
-            <div className="line"></div>
-            <div className="wrapper-section">
-              <div className="backgroundColorSection">
-                <div className="wroteLine"></div>
-                <div className="Onofone of three">
-                  <span className="el-one">{oneOfThree} / 3</span>
-                </div>
-                <div className="ROASTTYPE">
-                  <h2 className="ROASTTYPEHeader">ЯКИЙ ВАШ ТИП СМАЖЕННЯ?</h2>
-                </div>
-                <div className="Hint">
-                  <div className="wrapperHints" onClick={HandleHints}>
-                    <p className="HintText">ОТРИМАТИ ПІДСКАЗКУ</p>
-                    <FaPlus className="reactI" size={20} />
+      <Suspense
+        fallback={
+          <div style={{ color: "black", fontSize: "25px" }}>Loading...</div>
+        }
+      >
+        <section className="wrapper">
+          {flavors ? (
+            <Flavors />
+          ) : (
+            <section className="FullWrapper">
+              <Header />
+              <div className="line"></div>
+              <div className="wrapper-section">
+                <div className="backgroundColorSection">
+                  <div className="wroteLine"></div>
+                  <div className="Onofone of three">
+                    <span className="el-one">{oneOfThree} / 3</span>
                   </div>
-                </div>
-                {Hints ? (
-                  <p className="HintsTexts">
-                    Наше темне смажене має яскраві підсмажені нотки. Середній
-                    стиль плавний і збалансований. Легке обсмаження виходить
-                    яскравим і ароматним. Це точне смаження, яке виявляє
-                    найкращі якості будь-яких бобів.
-                  </p>
-                ) : null}
-              </div>
-              <section className="SelectCofe">
-                <div className="SelectCofeDown2">
-                  <div className="selectWrapper">
-                    <p className="selectWrapperText">Вибрати тип кави:</p>
+                  <div className="ROASTTYPE">
+                    <h2 className="ROASTTYPEHeader">ЯКИЙ ВАШ ТИП СМАЖЕННЯ?</h2>
                   </div>
-                  <div className="menuSelCoffe">
-                    <div
-                      className={Dark ? "ElMenuCofeSelect" : "ElMenuCofe"}
-                      onClick={HandleDark}
-                    >
-                      <div className="wrapperElMenuCofe">
-                        <div className="svgPhotoCofe">
-                          <PiCoffeeBean
-                            size={30}
-                            className="PiCoffeeBean"
-                            fill="#78542e"
-                          />
-                        </div>
-
-                        <div className="TextCofe">Dark</div>
-                      </div>
-                    </div>
-                    <div
-                      className={Medium ? "ElMenuCofeSelect" : "ElMenuCofe"}
-                      onClick={HandleMedium}
-                    >
-                      <div className="wrapperElMenuCofe">
-                        <div className="svgPhotoCofe">
-                          {" "}
-                          <PiCoffeeBean
-                            size={30}
-                            className="PiCoffeeBean"
-                            fill="#ba9863"
-                          />
-                        </div>
-
-                        <div className="TextCofe">
-                          <p>Medium</p>
-                        </div>
-                      </div>
-                    </div>{" "}
-                    <div
-                      className={Light ? "ElMenuCofeSelect" : "ElMenuCofe"}
-                      onClick={HandleLight}
-                    >
-                      <div className="wrapperElMenuCofe">
-                        <div className="svgPhotoCofe">
-                          {" "}
-                          <PiCoffeeBean
-                            size={30}
-                            className="PiCoffeeBean"
-                            fill="#eed794"
-                          />
-                        </div>
-
-                        <div className="TextCofe">
-                          <p>Light</p>
-                        </div>
-                      </div>
+                  <div className="Hint">
+                    <div className="wrapperHints" onClick={HandleHints}>
+                      <p className="HintText">ОТРИМАТИ ПІДСКАЗКУ</p>
+                      <FaPlus className="reactI" size={20} />
                     </div>
                   </div>
-                </div>
-                <div className="SelectCofeDown">
-                  <div className="selectWrapper">
-                    <p className="selectWrapperText">
-                      Бажаєте каву з кофеїном ?
+                  {Hints ? (
+                    <p className="HintsTexts">
+                      Наше темне смажене має яскраві підсмажені нотки. Середній
+                      стиль плавний і збалансований. Легке обсмаження виходить
+                      яскравим і ароматним. Це точне смаження, яке виявляє
+                      найкращі якості будь-яких бобів.
                     </p>
-                  </div>
-                  <div className="menuSelCoffe">
-                    <div
-                      className={Cofein ? "ElMenuCofeSelect" : "ElMenuCofe"}
-                      onClick={HandleCofein}
-                    >
-                      <div className="wrapperElMenuCofe">
-                        <div className="svgPhotoCofe">
-                          <BsFillLightningChargeFill
-                            size={30}
-                            className="PiCoffeeBean"
-                          />
-                        </div>
+                  ) : null}
+                </div>
+                <section className="SelectCofe">
+                  <div className="SelectCofeDown2">
+                    <div className="selectWrapper">
+                      <p className="selectWrapperText">Вибрати тип кави:</p>
+                    </div>
+                    <div className="menuSelCoffe">
+                      <div
+                        className={Dark ? "ElMenuCofeSelect" : "ElMenuCofe"}
+                        onClick={HandleDark}
+                      >
+                        <div className="wrapperElMenuCofe">
+                          <div className="svgPhotoCofe">
+                            <PiCoffeeBean
+                              size={30}
+                              className="PiCoffeeBean"
+                              fill="#78542e"
+                            />
+                          </div>
 
-                        <div className="TextCofe">Так</div>
+                          <div className="TextCofe">Dark</div>
+                        </div>
+                      </div>
+                      <div
+                        className={Medium ? "ElMenuCofeSelect" : "ElMenuCofe"}
+                        onClick={HandleMedium}
+                      >
+                        <div className="wrapperElMenuCofe">
+                          <div className="svgPhotoCofe">
+                            {" "}
+                            <PiCoffeeBean
+                              size={30}
+                              className="PiCoffeeBean"
+                              fill="#ba9863"
+                            />
+                          </div>
+
+                          <div className="TextCofe">
+                            <p>Medium</p>
+                          </div>
+                        </div>
+                      </div>{" "}
+                      <div
+                        className={Light ? "ElMenuCofeSelect" : "ElMenuCofe"}
+                        onClick={HandleLight}
+                      >
+                        <div className="wrapperElMenuCofe">
+                          <div className="svgPhotoCofe">
+                            {" "}
+                            <PiCoffeeBean
+                              size={30}
+                              className="PiCoffeeBean"
+                              fill="#eed794"
+                            />
+                          </div>
+
+                          <div className="TextCofe">
+                            <p>Light</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div
-                      className={NoCofein ? "ElMenuCofeSelect" : "ElMenuCofe"}
-                      onClick={NoCofeinfHandle}
-                    >
-                      <div className="wrapperElMenuCofe">
-                        <div className="svgPhotoCofe">
-                          {" "}
-                          <TbCoffeeOff size={30} className="PiCoffeeBean" />
-                        </div>
+                  </div>
+                  <div className="SelectCofeDown">
+                    <div className="selectWrapper">
+                      <p className="selectWrapperText">
+                        Бажаєте каву з кофеїном ?
+                      </p>
+                    </div>
+                    <div className="menuSelCoffe">
+                      <div
+                        className={Cofein ? "ElMenuCofeSelect" : "ElMenuCofe"}
+                        onClick={HandleCofein}
+                      >
+                        <div className="wrapperElMenuCofe">
+                          <div className="svgPhotoCofe">
+                            <BsFillLightningChargeFill
+                              size={30}
+                              className="PiCoffeeBean"
+                            />
+                          </div>
 
-                        <div className="TextCofe">
-                          <p>Ні</p>
+                          <div className="TextCofe">Так</div>
                         </div>
                       </div>
-                    </div>{" "}
-                  </div>
-                </div>
+                      <div
+                        className={NoCofein ? "ElMenuCofeSelect" : "ElMenuCofe"}
+                        onClick={NoCofeinfHandle}
+                      >
+                        <div className="wrapperElMenuCofe">
+                          <div className="svgPhotoCofe">
+                            {" "}
+                            <TbCoffeeOff size={30} className="PiCoffeeBean" />
+                          </div>
 
-                <div className="BtnBext">
-                  <button className="NexPageBtn" onClick={HandleNextMenu}>
-                    Дальше
-                  </button>
-                </div>
-              </section>
-            </div>
-            <Footer />
-          </section>
-        )}
-      </section>
+                          <div className="TextCofe">
+                            <p>Ні</p>
+                          </div>
+                        </div>
+                      </div>{" "}
+                    </div>
+                  </div>
+
+                  <div className="BtnBext">
+                    <button className="NexPageBtn" onClick={HandleNextMenu}>
+                      Дальше
+                    </button>
+                  </div>
+                </section>
+              </div>
+              <Footer />
+            </section>
+          )}
+        </section>
+      </Suspense>
     </>
   );
 }

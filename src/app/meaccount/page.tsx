@@ -3,7 +3,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLiked } from "../store/cindstore";
 import { useTypeCofe, useTypeCofeTwo } from "../store/store";
+import { GoTrash } from "react-icons/go";
+import Image from "next/image";
 import "./meaccount.css";
+import PhotoMeCofe from "./cofephoto/kawa_BEANS.png";
 
 export default function MeCofeAccount() {
   const DarkChoko = useTypeCofe((state) => state.DarkChoko);
@@ -74,22 +77,53 @@ export default function MeCofeAccount() {
   };
 
   return (
-    <div>
-      <div>
+    <div className="wrapperFullBlock">
+      <div className="LeftSidePhotoCofe">
+        <div className="wrapperLeftSidePhotoCofe"></div>
+      </div>
+      <div className="WrapperPage">
         <div className="wrapperElMeCofe">
-          <span className="wrapperHeader">
-            <h1>Моя професійна кава:</h1>
-          </span>
-          {Object.entries(combinedData).map(([key, value]) => (
-            <div key={key}>
-              <p>{Array.isArray(value) ? value.join(", ") : value}</p>
+          <Image
+            src={PhotoMeCofe.src}
+            alt="TextPhotoCoffe"
+            width={305}
+            height={410}
+            className="Image"
+          />
+          <div className="About">
+            <div className="wrapperHeader">
+              <h1 className="HeaderAged">Aged Sumatra</h1>
             </div>
-          ))}
+            <div className="wrapperPrice">
+              <p className="Price">$ 19.95 </p>
+              <span className="LB"> / LB</span>
+            </div>
+            {Object.entries(combinedData).map(([key, value]) => (
+              <div key={key}>
+                <h6 className="HeaderTxt">
+                  {key === "DarkChoko"
+                    ? "Темний шоколад"
+                    : key === "Cofeinnn"
+                    ? "Кофеїн"
+                    : key === "TypeCofeTwo"
+                    ? "Типи кави"
+                    : "Смак кави"}
+                </h6>
+                <p className="value">
+                  {Array.isArray(value) ? value.join(", ") : value}
+                </p>
+              </div>
+            ))}
+          </div>
+          {isButtonVisible && (
+            <GoTrash
+              onClick={handleDeleteAll}
+              width={80}
+              size={50}
+              height={65}
+            />
+          )}
         </div>
-        {/* Кнопка для видалення всіх даних, якщо вона видима */}
-        {isButtonVisible && (
-          <button onClick={handleDeleteAll}>Видалити всі дані</button>
-        )}
       </div>
     </div>
   );

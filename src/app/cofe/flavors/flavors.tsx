@@ -29,9 +29,7 @@ import { useTypeCofeTwo } from "../../store/store";
 export default function Flavors() {
   const [Hints, SetHints] = useState(false);
   const [cofePafe, setCofePage] = useState(false);
-  const typeCofeTwoFunckk = useTypeCofeTwo(
-    (state) => state.useTypeCofeTwoFunckk
-  );
+  const typeCofeTwoFunckk = useTypeCofeTwo((state) => state.useTypeCofeTwoFunc);
 
   const loadSelectedTextFromLocalStorage = () => {
     const savedText = localStorage.getItem("selectedText");

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 
+// Типи для LikeState, Visibility і Visibility2
 type LikeState = {
   Popular: string;
   HowyouLikedCofe: string;
@@ -7,16 +8,30 @@ type LikeState = {
   setHowYouLikedCofe: (value: string) => void;
 };
 
-type useVisibility = {
+type VisibilityState = {
   isVisible: boolean;
-  toggleSendData: (state: boolean) => void;
+  toggleSendData: (state: boolean) => void; // Оновлено тип toggleSendData
 };
 
-type useVisibility2 = {
+type StoreState = {
   sendData: boolean;
-  toggleSendData: (state: boolean) => void;
+  toggleSendData: (state: boolean) => void; // Оновлено тип toggleSendData
 };
 
+// Типи для стану кави та смаку
+type CofeState = {
+  DarkChoko: string;
+  Cofeinnn: string;
+  increaseCount: (type: string) => void;
+  AddCofein: (type: string) => void;
+};
+
+type TasteCofeType = {
+  TypeCofeTwo: string[];
+  useTypeCofeTwoFunckk: (type: string[]) => void;
+};
+
+// Створення zustand для LikeState
 const useLiked = create<LikeState>((set) => ({
   Popular: "",
   HowyouLikedCofe: "",
@@ -24,14 +39,31 @@ const useLiked = create<LikeState>((set) => ({
   setHowYouLikedCofe: (value: string) => set({ HowyouLikedCofe: value }),
 }));
 
-const useVisibilityStore = create<useVisibility>((set) => ({
+// Створення zustand для Visibility
+const useVisibilityStore = create<VisibilityState>((set) => ({
   isVisible: false,
   toggleSendData: () => set((state) => ({ isVisible: !state.isVisible })),
 }));
 
-const useStore = create<useVisibility2>((set) => ({
+// Створення zustand для StoreState
+const useStore = create<StoreState>((set) => ({
   sendData: true,
   toggleSendData: () => set((state) => ({ sendData: !state.sendData })),
 }));
 
-export { useLiked, useVisibilityStore, useStore };
+// Створення zustand для CofeState
+const useTypeCofe = create<CofeState>((set) => ({
+  DarkChoko: "",
+  Cofeinnn: "",
+  increaseCount: (type: string) => set({ DarkChoko: type }),
+  AddCofein: (type: string) => set({ Cofeinnn: type }),
+}));
+
+// Створення zustand для TasteCofeType
+const useTypeCofeTwo = create<TasteCofeType>((set) => ({
+  TypeCofeTwo: [],
+  useTypeCofeTwoFunckk: (type: string[]) => set({ TypeCofeTwo: type }),
+}));
+
+// Експорт всіх створених станів
+export { useLiked, useVisibilityStore, useStore, useTypeCofe, useTypeCofeTwo };

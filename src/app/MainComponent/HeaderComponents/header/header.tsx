@@ -20,9 +20,11 @@ const Header = () => {
               </li>
             </ul>
           </nav>
-          <div className={styles.HeaderTextWrapper}>
-            <h1 className={styles.HeaderText}>LATTE CAFE</h1>
-          </div>
+          <Link href="/">
+            <div className={styles.HeaderTextWrapper}>
+              <h1 className={styles.HeaderText}>LATTE CAFE</h1>
+            </div>
+          </Link>
           <div className={styles.SocBlock}>
             <nav>
               <ul className={styles.Ul}>

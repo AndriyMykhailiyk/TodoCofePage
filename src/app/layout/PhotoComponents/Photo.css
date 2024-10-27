@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Graduate&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Play:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Graduate&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Play:wght@400;700&family=Scada:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
 .wrapperPhoto {
   background-color: white;
   padding: 120px 20px;
@@ -7,7 +10,6 @@
 }
 .TwoPhoto {
   display: flex;
-  gap: 40px;
   flex-direction: column;
 }
 .Main-wrapper-Photos {
@@ -18,4 +20,23 @@
 
 .FirstPhoto {
   border-radius: 12px;
+}
+
+.ThisText {
+  font-size: 20px;
+  color: black;
+  font-family: "Scada", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  padding-top: 0.5em;
+  cursor: pointer;
+}
+.ThisText2 {
+  cursor: pointer;
+  font-size: 20px;
+  color: black;
+  font-family: "Scada", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  padding-top: 1em;
 }

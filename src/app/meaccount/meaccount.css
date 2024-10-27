@@ -1,5 +1,51 @@
 .wrapperElMeCofe {
+  display: flex;
+  width: 60vw;
+  padding: 1em;
   background-color: bisque;
   color: black;
-  display: inline-block;
+}
+.WrapperPage {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.About {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+.Image {
+  padding-right: 2em;
+}
+.wrapperHeader {
+  padding-bottom: 1em;
+}
+
+.Price {
+  font-family: proxima-nova, sans-serif;
+  font-weight: 600;
+}
+.wrapperPrice {
+  padding-bottom: 1em;
+  display: flex;
+}
+
+.LB {
+  margin-left: 7px;
+}
+.HeaderTxt {
+  font-family: proxima-nova, sans-serif;
+  font-size: 0.855rem;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 0.0625rem;
+  text-transform: uppercase;
+}
+
+.value {
+  font-size: 0.9375rem;
+  line-height: 1.21875rem;
 }

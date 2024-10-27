@@ -127,3 +127,30 @@
   line-height: 16px;
   font-size: 16px;
 }
+
+.ElMenuCofe {
+  --shine-deg: 45deg;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 25px -18px #ffcdae;
+  background-repeat: no-repeat;
+  background-position: -100% 0, 0 0;
+
+  background-image: linear-gradient(
+    var(--shine-deg),
+    transparent 20%,
+    transparent 40%,
+    #fbe4d5 50%,
+    #f7ddcd 55%,
+    transparent 70%,
+    transparent 100%
+  );
+
+  background-size: 250% 250%, 100% 100%;
+  transition: background-position 0s ease;
+}
+
+.ElMenuCofe:hover {
+  background-position: 200%0, 0 0;
+  transition-duration: 1.5s;
+}
