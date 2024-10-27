@@ -77,6 +77,9 @@ export default function MeCofeAccount() {
     <div>
       <div>
         <div className="wrapperElMeCofe">
+          <span className="wrapperHeader">
+            <h1>Моя професійна кава:</h1>
+          </span>
           {Object.entries(combinedData).map(([key, value]) => (
             <div key={key}>
               <p>{Array.isArray(value) ? value.join(", ") : value}</p>
