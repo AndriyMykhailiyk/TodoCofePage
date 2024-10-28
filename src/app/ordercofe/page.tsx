@@ -59,7 +59,7 @@ export default function OrderCofe() {
     if (!savedName) {
       setShowModal(true);
     }
-  }, []);
+  }, [useSetCofePage]);
 
   const handleModalSubmit = (name: string) => {
     useSetCofePage(name);
