@@ -6,7 +6,7 @@ interface ModalProps {
   onSubmit: (name: string) => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose, onSubmit }) => {
+const Modal: React.FC<ModalProps> = ({ onSubmit }) => {
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {

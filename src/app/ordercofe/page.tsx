@@ -8,7 +8,6 @@ import MeCofePhoto from "./mecofephoto/Cofe.png";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
 import Footer from "../MainComponent/footer/Footer";
-import { IoIosStarOutline, IoIosStarHalf } from "react-icons/io";
 import { IoBasketOutline } from "react-icons/io5";
 import Modal from "./meorder/Modal";
 import { FaArrowRightLong } from "react-icons/fa6";

@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Loading } from "../layout/loading/loading";
 import "./Cofe.css";
 import { FaPlus } from "react-icons/fa6";
 import { PiCoffeeBean } from "react-icons/pi";
