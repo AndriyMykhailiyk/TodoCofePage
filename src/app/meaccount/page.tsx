@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useLiked } from "../store/cindstore";
+import { useLiked, useSetName } from "../store/cindstore";
 import { useTypeCofe, useTypeCofeTwo } from "../store/store";
 import { GoTrash } from "react-icons/go";
 import Image from "next/image";
@@ -13,7 +13,7 @@ export default function MeCofeAccount() {
   const Cofeinnn = useTypeCofe((state) => state.Cofeinnn);
   const TypeCofeTwo = useTypeCofeTwo((state) => state.TypeCofeTwo);
   const HowyouLikedCofe = useLiked((state) => state.HowyouLikedCofe);
-
+  const MeCofeName = useSetName((state) => state.MeCofeName);
   const [isButtonVisible, setButtonVisible] = useState(true);
 
   useEffect(() => {
@@ -91,8 +91,8 @@ export default function MeCofeAccount() {
             className="Image"
           />
           <div className="About">
-            <div className="wrapperHeader">
-              <h1 className="HeaderAged">Aged Sumatra</h1>
+            <div className="wrapperHeader34">
+              <h1 className="HeaderAged">{MeCofeName}</h1>
             </div>
             <div className="wrapperPrice">
               <p className="Price">$ 19.95 </p>

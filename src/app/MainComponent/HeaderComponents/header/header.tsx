@@ -5,7 +5,7 @@ import Instagram from "../../../Svg/IMAGE (1).png";
 import Facebook from "../../../Svg/Vector (1).png";
 import Image from "next/image";
 import Link from "next/link";
-
+import Tooltip from "@mui/material/Tooltip";
 const Header = () => {
   return (
     <>
@@ -29,33 +29,39 @@ const Header = () => {
             <nav>
               <ul className={styles.Ul}>
                 <li className={styles.ulLi}>
-                  <Image
-                    src={Mail.src}
-                    className={styles.menuelsvg}
-                    alt=""
-                    width={28}
-                    height={26}
-                  />
+                  <Tooltip title="Add" arrow>
+                    <Image
+                      src={Mail.src}
+                      className={styles.menuelsvg}
+                      alt=""
+                      width={28}
+                      height={26}
+                    />
+                  </Tooltip>
                 </li>
 
                 <li className={styles.ulLi}>
-                  <Image
-                    src={Instagram.src}
-                    className={styles.menuelsvg}
-                    alt=""
-                    width={28}
-                    height={26}
-                  />
+                  <Tooltip title="Instagram" arrow>
+                    <Image
+                      src={Instagram.src}
+                      className={styles.menuelsvg}
+                      alt=""
+                      width={28}
+                      height={26}
+                    />
+                  </Tooltip>
                 </li>
 
                 <li className={styles.ulLi}>
-                  <Image
-                    src={Facebook.src}
-                    className={styles.menuelsvg}
-                    alt=""
-                    width={28}
-                    height={26}
-                  />
+                  <Tooltip title="Facebook" arrow>
+                    <Image
+                      src={Facebook.src}
+                      className={styles.menuelsvg}
+                      alt=""
+                      width={28}
+                      height={26}
+                    />
+                  </Tooltip>
                 </li>
               </ul>
             </nav>

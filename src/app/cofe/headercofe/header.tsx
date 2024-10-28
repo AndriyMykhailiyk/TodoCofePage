@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../cofe/Cofe.css'
+import React from "react";
+import "../../cofe/Cofe.css";
 export default function Header() {
   return (
     <section className="Header">

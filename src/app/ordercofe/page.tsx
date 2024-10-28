@@ -1,17 +1,19 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useTypeCofe, useTypeCofeTwo } from "../store/store";
-import { useLiked, useStore } from "../store/cindstore";
+import { useLiked, useSetName, useStore } from "../store/cindstore";
 import "./order.css";
 import Image from "next/image";
 import MeCofePhoto from "./mecofephoto/Cofe.png";
-import { IoIosArrowRoundForward, IoIosArrowRoundBack } from "react-icons/io";
+import { IoIosArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
 import Footer from "../MainComponent/footer/Footer";
 import { IoIosStarOutline, IoIosStarHalf } from "react-icons/io";
 import { IoBasketOutline } from "react-icons/io5";
-
+import Modal from "./meorder/Modal";
+import { FaArrowRightLong } from "react-icons/fa6";
+import Rating from "@mui/material/Rating";
+import { Box } from "@mui/material";
 export default function OrderCofe() {
   const DarkChoko = useTypeCofe((state) => state.DarkChoko);
   const Cofeinnn = useTypeCofe((state) => state.Cofeinnn);
@@ -19,6 +21,9 @@ export default function OrderCofe() {
   const HowyouLikedCofe = useLiked((state) => state.HowyouLikedCofe);
   const [descruption, setDescription] = useState(false);
   const toggleSendData = useStore((state) => state.toggleSendData);
+  const [showModal, setShowModal] = useState(false);
+  const { MeCofeName, useSetCofePage } = useSetName();
+  const [value, setValue] = useState<number | null>(1);
 
   const HandleDescription = () => {
     setDescription(!descruption);
@@ -39,7 +44,10 @@ export default function OrderCofe() {
   // Відновлення даних з localStorage
   useEffect(() => {
     const savedOrder = localStorage.getItem("CoffeeOrder");
-
+    const savedName = localStorage.getItem("MeCofeName");
+    if (savedName) {
+      useSetCofePage(savedName);
+    }
     if (savedOrder) {
       const { DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe } =
         JSON.parse(savedOrder);
@@ -48,10 +56,27 @@ export default function OrderCofe() {
       useTypeCofeTwo.setState({ TypeCofeTwo });
       useLiked.setState({ HowyouLikedCofe });
     }
+
+    if (!savedName) {
+      setShowModal(true);
+    }
   }, []);
+
+  const handleModalSubmit = (name: string) => {
+    useSetCofePage(name);
+    localStorage.setItem("MeCofeName", name);
+    setShowModal(false);
+  };
 
   return (
     <>
+      {showModal && (
+        <Modal
+          onClose={() => setShowModal(false)}
+          onSubmit={handleModalSubmit}
+        />
+      )}
+
       <header className="HeaderComponent">
         <div className="wrapperHeaderCoffeOreder">
           <div className="BackBtn2">
@@ -93,22 +118,34 @@ export default function OrderCofe() {
 
               <section className="AboutMeCoffe">
                 <span className="WrapperheaderTextMeCofe">
-                  <h1 className="headerTextMeCofe">Aged Sumatra</h1>
+                  <h1 className="headerTextMeCofe">{MeCofeName || " "}</h1>
                 </span>
                 <span className="wrapper-Prisereting">
                   <div className="prise">
                     <p className="priseTag">$19.95</p>
                   </div>
+
                   <div className="rating">
-                    <IoIosStarOutline fill="#78542e" size={18} />
-                    <IoIosStarOutline fill="#78542e" size={18} />
-                    <IoIosStarOutline fill="#78542e" size={18} />
-                    <IoIosStarOutline fill="#78542e" size={18} />
-                    <IoIosStarHalf fill="#78542e" size={18} />
-                    <p className="ratingTag">(4.5)</p>
+                    <Box sx={{ "& > legend": { mt: 1 }, display: "flex" }}>
+                      <Rating
+                        name="simple-controlled"
+                        value={value}
+                        onChange={(event, newValue) => {
+                          setValue(newValue);
+                        }}
+                        sx={{ fontSize: "1.3rem" }} // або будь-який інший розмір
+                      />
+                    </Box>{" "}
                   </div>
                 </span>
+                <button
+                  className="NexPageBtn2"
+                  onClick={() => setShowModal(true)}
+                >
+                  Змінити назву кави
+                </button>
                 <p className="gradText">{TypeCofeTwo.join(", ")}</p>
+
                 <section className="BtnSec9090">
                   <div className="wrapperBtn">
                     <button
@@ -122,11 +159,7 @@ export default function OrderCofe() {
                 <div className="descriptionPage">
                   <span className="wtapperBack" onClick={HandleDescription}>
                     <a>Деталі продукту</a>
-                    <IoIosArrowRoundForward
-                      width={500}
-                      height={30}
-                      className="IoIosArrowRoundForward"
-                    />
+                    <FaArrowRightLong className="IoIosArrowRoundForward" />
                   </span>
                 </div>
               </section>
@@ -164,7 +197,7 @@ export default function OrderCofe() {
 
           <div className="wrapperdiscount">
             <h1 className="discountTextCofe">
-              Отримай знизку в 15% з промокодом{" "}
+              Отримай знижку в 15% з промокодом{" "}
               <span className="Diskount">CofeTop</span>
             </h1>
           </div>

@@ -31,6 +31,11 @@ type TasteCofeType = {
   useTypeCofeTwoFunckk: (type: string[]) => void;
 };
 
+type SetNameType = {
+  MeCofeName: string;
+  useSetCofePage: (type: string) => void;
+};
+
 // Створення zustand для LikeState
 const useLiked = create<LikeState>((set) => ({
   Popular: "",
@@ -65,5 +70,20 @@ const useTypeCofeTwo = create<TasteCofeType>((set) => ({
   useTypeCofeTwoFunckk: (type: string[]) => set({ TypeCofeTwo: type }),
 }));
 
+const useSetName = create<SetNameType>((set) => ({
+  MeCofeName: "",
+  useSetCofePage: (type: string) => {
+    set({ MeCofeName: type });
+    localStorage.setItem("MeCofeName", type); // Збереження в localStorage
+  },
+}));
+
 // Експорт всіх створених станів
-export { useLiked, useVisibilityStore, useStore, useTypeCofe, useTypeCofeTwo };
+export {
+  useLiked,
+  useVisibilityStore,
+  useStore,
+  useTypeCofe,
+  useTypeCofeTwo,
+  useSetName,
+};

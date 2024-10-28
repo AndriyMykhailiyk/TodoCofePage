@@ -1,4 +1,5 @@
 .wrapper-section {
+  border-bottom: 1px solid rgb(210, 210, 210);
   height: 100vh;
   display: flex;
 }
@@ -128,6 +129,9 @@
   font-size: 16px;
 }
 
+.NexPageBtn:hover {
+  background-color: #b07a40;
+}
 .ElMenuCofe {
   --shine-deg: 45deg;
   position: relative;
