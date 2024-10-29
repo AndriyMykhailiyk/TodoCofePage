@@ -27,8 +27,6 @@
 }
 .wrapperBtn {
   gap: 10px;
-  display: flex;
-  flex-direction: column;
 }
 .listMenu {
   padding-bottom: 4em;

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTypeCofe, useTypeCofeTwo } from "../store/store";
 import { useLiked, useSetName, useStore } from "../store/cindstore";
 import "./order.css";
@@ -12,7 +12,8 @@ import { IoBasketOutline } from "react-icons/io5";
 import Modal from "./meorder/Modal";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Rating from "@mui/material/Rating";
-import { Box } from "@mui/material";
+import { Box, Snackbar, Alert } from "@mui/material";
+
 export default function OrderCofe() {
   const DarkChoko = useTypeCofe((state) => state.DarkChoko);
   const Cofeinnn = useTypeCofe((state) => state.Cofeinnn);
@@ -23,10 +24,23 @@ export default function OrderCofe() {
   const [showModal, setShowModal] = useState(false);
   const { MeCofeName, useSetCofePage } = useSetName();
   const [value, setValue] = useState<number | null>(1);
+  const [isAdded, setIsAdded] = useState(false); // Стан для відображення кнопки
+  const [snackbarOpen, setSnackbarOpen] = useState(false); // Стан для відображення Snackbar
+  const [snackbarMessage, setSnackbarMessage] = useState(""); // Повідомлення для Snackbar
 
   const HandleDescription = () => {
     setDescription(!descruption);
   };
+
+  const combinedData = useMemo(
+    () => ({
+      DarkChoko,
+      Cofeinnn,
+      TypeCofeTwo,
+      HowyouLikedCofe,
+    }),
+    [DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe]
+  );
 
   // Збереження даних у localStorage
   useEffect(() => {
@@ -65,6 +79,73 @@ export default function OrderCofe() {
     useSetCofePage(name);
     localStorage.setItem("MeCofeName", name);
     setShowModal(false);
+  };
+
+  const handleAddToCart = () => {
+    const coffeeOrder = {
+      DarkChoko,
+      Cofeinnn,
+      TypeCofeTwo,
+      HowyouLikedCofe,
+    };
+
+    const existingOrders = JSON.parse(
+      localStorage.getItem("CoffeeOrders") || "[]"
+    );
+
+    if (
+      existingOrders.some(
+        (order: boolean) =>
+          JSON.stringify(order) === JSON.stringify(coffeeOrder)
+      )
+    ) {
+      // Видалити об'єкт з корзини
+      const updatedOrders = existingOrders.filter(
+        (order: boolean) =>
+          JSON.stringify(order) !== JSON.stringify(coffeeOrder)
+      );
+      localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
+      setIsAdded(false);
+      setSnackbarMessage("Товар прибрано");
+    } else {
+      // Додати об'єкт до корзини
+      existingOrders.push(coffeeOrder);
+      localStorage.setItem("CoffeeOrders", JSON.stringify(existingOrders));
+      setIsAdded(true);
+      setSnackbarMessage("Товар додано");
+    }
+    setSnackbarOpen(true);
+  };
+
+  useEffect(() => {
+    const existingOrders = JSON.parse(
+      localStorage.getItem("CoffeeOrders") || "[]"
+    );
+    const coffeeOrder = {
+      DarkChoko,
+      Cofeinnn,
+      TypeCofeTwo,
+      HowyouLikedCofe,
+    };
+
+    if (
+      existingOrders.some(
+        (order: boolean) =>
+          JSON.stringify(order) === JSON.stringify(coffeeOrder)
+      )
+    ) {
+      setIsAdded(true); // Об'єкт вже є в списку
+    }
+  }, [DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe]);
+
+  const handleCloseSnackbar = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackbarOpen(false);
   };
 
   return (
@@ -117,7 +198,9 @@ export default function OrderCofe() {
 
               <section className="AboutMeCoffe">
                 <span className="WrapperheaderTextMeCofe">
-                  <h1 className="headerTextMeCofe">{MeCofeName || " "}</h1>
+                  <h1 className="headerTextMeCofe">
+                    {MeCofeName || "Моя супер кава"}
+                  </h1>
                 </span>
                 <span className="wrapper-Prisereting">
                   <div className="prise">
@@ -147,11 +230,8 @@ export default function OrderCofe() {
 
                 <section className="BtnSec9090">
                   <div className="wrapperBtn">
-                    <button
-                      className="NexPageBtn"
-                      onClick={() => toggleSendData(true)}
-                    >
-                      Додати в кошик
+                    <button className="NexPageBtn" onClick={handleAddToCart}>
+                      {isAdded ? "Додано" : "Додати до списку"}
                     </button>
                   </div>
                 </section>
@@ -197,7 +277,9 @@ export default function OrderCofe() {
           <div className="wrapperdiscount">
             <h1 className="discountTextCofe">
               Отримай знижку в 15% з промокодом{" "}
-              <span className="Diskount">CofeTop</span>
+              <span className="Diskount" onClick={() => setShowModal(true)}>
+                CofeTop
+              </span>
             </h1>
           </div>
         </section>
@@ -205,6 +287,21 @@ export default function OrderCofe() {
       <div className="wrapperFootter">
         <Footer />
       </div>
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </>
   );
 }
