@@ -21,11 +21,9 @@ export default function OrderCofe() {
   const TypeCofeTwo = useTypeCofeTwo((state) => state.TypeCofeTwo);
   const HowyouLikedCofe = useLiked((state) => state.HowyouLikedCofe);
   const [descruption, setDescription] = useState(false);
-  const toggleSendData = useStore((state) => state.toggleSendData);
   const [showModal, setShowModal] = useState(false);
   const [showDiskount, setShowDiskount] = useState(false); // Додаємо стан для керування відображенням Diskount
   const { MeCofeName, useSetCofePage } = useSetName();
-  const { NewPrice, useSetNewPrice } = usePrice();
   const [value, setValue] = useState<number | null>(1);
   const [isAdded, setIsAdded] = useState(false); // Стан для відображення кнопки
   const [snackbarOpen, setSnackbarOpen] = useState(false); // Стан для відображення Snackbar
