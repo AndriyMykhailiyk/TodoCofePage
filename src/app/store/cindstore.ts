@@ -36,6 +36,11 @@ type SetNameType = {
   useSetCofePage: (type: string) => void;
 };
 
+type SetNewPrice = {
+  NewPrice: string;
+  useSetNewPrice: (type: string) => void;
+};
+
 // Створення zustand для LikeState
 const useLiked = create<LikeState>((set) => ({
   Popular: "",
@@ -78,8 +83,16 @@ const useSetName = create<SetNameType>((set) => ({
   },
 }));
 
+const usePrice = create<SetNewPrice>((set) => ({
+  NewPrice: "",
+  useSetNewPrice: (type: string) => {
+    set({ NewPrice: type });
+  },
+}));
+
 // Експорт всіх створених станів
 export {
+  usePrice,
   useLiked,
   useVisibilityStore,
   useStore,

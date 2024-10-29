@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { useTypeCofe, useTypeCofeTwo } from "../store/store";
-import { useLiked, useSetName, useStore } from "../store/cindstore";
+import { useLiked, usePrice, useSetName, useStore } from "../store/cindstore";
 import "./order.css";
 import Image from "next/image";
 import MeCofePhoto from "./mecofephoto/Cofe.png";
@@ -13,6 +13,7 @@ import Modal from "./meorder/Modal";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Rating from "@mui/material/Rating";
 import { Box, Snackbar, Alert } from "@mui/material";
+import Diskount from "./discount/Diskount"; // Імпортуємо компонент Diskount
 
 export default function OrderCofe() {
   const DarkChoko = useTypeCofe((state) => state.DarkChoko);
@@ -22,11 +23,17 @@ export default function OrderCofe() {
   const [descruption, setDescription] = useState(false);
   const toggleSendData = useStore((state) => state.toggleSendData);
   const [showModal, setShowModal] = useState(false);
+  const [showDiskount, setShowDiskount] = useState(false); // Додаємо стан для керування відображенням Diskount
   const { MeCofeName, useSetCofePage } = useSetName();
+  const { NewPrice, useSetNewPrice } = usePrice();
   const [value, setValue] = useState<number | null>(1);
   const [isAdded, setIsAdded] = useState(false); // Стан для відображення кнопки
   const [snackbarOpen, setSnackbarOpen] = useState(false); // Стан для відображення Snackbar
   const [snackbarMessage, setSnackbarMessage] = useState(""); // Повідомлення для Snackbar
+  const [price, setPrice] = useState(19.95); // Стан для ціни
+  const [badprice, SetBedPrice] = useState(false);
+  const [promoSnackbarOpen, setPromoSnackbarOpen] = useState(false); // Стан для відображення Snackbar про промокод
+  const [promoSnackbarMessage, setPromoSnackbarMessage] = useState(""); // Повідомлення для Snackbar про промокод
 
   const HandleDescription = () => {
     setDescription(!descruption);
@@ -79,6 +86,21 @@ export default function OrderCofe() {
     useSetCofePage(name);
     localStorage.setItem("MeCofeName", name);
     setShowModal(false);
+  };
+
+  const handleDiskountSubmit = (code: string) => {
+    if (code === "Промокод") {
+      setPrice(price * 0.85); // Знижка 15%
+      SetBedPrice(false); // Скидаємо помилку
+      setPromoSnackbarMessage("Промокод успішно застосовано!");
+      setPromoSnackbarOpen(true);
+      setShowDiskount(false); // Закриваємо меню після введення правильного промокоду
+    } else {
+      SetBedPrice(true); // Показуємо помилку
+      setPromoSnackbarMessage("Неправильний промокод!");
+      setPromoSnackbarOpen(true);
+      return; // Зупиняємо виконання, якщо промокод невірний
+    }
   };
 
   const handleAddToCart = () => {
@@ -148,12 +170,31 @@ export default function OrderCofe() {
     setSnackbarOpen(false);
   };
 
+  const handleClosePromoSnackbar = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setPromoSnackbarOpen(false);
+  };
+
   return (
     <>
       {showModal && (
         <Modal
           onClose={() => setShowModal(false)}
           onSubmit={handleModalSubmit}
+        />
+      )}
+
+      {showDiskount && (
+        <Diskount
+          badprice={badprice}
+          SetBedPrice={SetBedPrice}
+          onClose={() => setShowDiskount(false)}
+          onSubmit={handleDiskountSubmit}
         />
       )}
 
@@ -204,7 +245,7 @@ export default function OrderCofe() {
                 </span>
                 <span className="wrapper-Prisereting">
                   <div className="prise">
-                    <p className="priseTag">$19.95</p>
+                    <p className="priseTag">${price.toFixed(2)}</p>
                   </div>
 
                   <div className="rating">
@@ -277,7 +318,7 @@ export default function OrderCofe() {
           <div className="wrapperdiscount">
             <h1 className="discountTextCofe">
               Отримай знижку в 15% з промокодом{" "}
-              <span className="Diskount" onClick={() => setShowModal(true)}>
+              <span className="Diskount" onClick={() => setShowDiskount(true)}>
                 CofeTop
               </span>
             </h1>
@@ -300,6 +341,21 @@ export default function OrderCofe() {
           sx={{ width: "100%" }}
         >
           {snackbarMessage}
+        </Alert>
+      </Snackbar>
+
+      <Snackbar
+        open={promoSnackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleClosePromoSnackbar}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+      >
+        <Alert
+          onClose={handleClosePromoSnackbar}
+          severity={badprice ? "error" : "success"}
+          sx={{ width: "100%" }}
+        >
+          {promoSnackbarMessage}
         </Alert>
       </Snackbar>
     </>
