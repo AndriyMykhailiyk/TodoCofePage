@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { useTypeCofe, useTypeCofeTwo } from "../store/store";
-import { useLiked, usePrice, useSetName, useStore } from "../store/cindstore";
+import { useLiked, useSetName } from "../store/cindstore";
 import "./order.css";
 import Image from "next/image";
 import MeCofePhoto from "./mecofephoto/Cofe.png";
@@ -36,16 +36,6 @@ export default function OrderCofe() {
   const HandleDescription = () => {
     setDescription(!descruption);
   };
-
-  const combinedData = useMemo(
-    () => ({
-      DarkChoko,
-      Cofeinnn,
-      TypeCofeTwo,
-      HowyouLikedCofe,
-    }),
-    [DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe]
-  );
 
   // Збереження даних у localStorage
   useEffect(() => {

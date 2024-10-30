@@ -8,6 +8,7 @@ import Location from "./layout/Location/Location";
 import PhotoComponent from "./layout/PhotoComponents/PhotoComponent";
 import Aword from "./layout/Aword/Aword";
 import Footer from "./MainComponent/footer/Footer";
+import Elcofe from "./layout/ElCofeBlock/ElcofeBlock";
 export default function Home() {
   return (
     <>
@@ -18,6 +19,7 @@ export default function Home() {
         <Location />
         <PhotoComponent />
         <Aword />
+        <Elcofe />
         <Footer />
       </section>
     </>

@@ -240,3 +240,45 @@ a.secondary {
   display: block;
   width: 100%;
 }
+
+.photowrapper {
+  position: relative; /* Забезпечує, щоб текст був позиціонований відносно фото */
+}
+
+.textOverlay {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white; /* Колір тексту, якщо потрібно */
+  padding: 10px; /* Відступи тексту, якщо потрібно */
+  margin-bottom: 30px;
+}
+.textOverlayPhoto {
+  padding-bottom: 0.5em;
+  font-size: 40px;
+  line-height: 1.2em;
+}
+
+.textOverlayPhotoDes {
+  padding-bottom: 1.9em;
+  font-weight: 700;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.textOverlayPhotoBtn {
+  font-size: 18px;
+  border-radius: 5px;
+  border-color: transparent;
+  font-weight: 600;
+  background-color: #d27487;
+  cursor: pointer;
+  padding: 13px 12px;
+}
+
+.textOverlayPhotoBtn:hover {
+  background-color: #fc5375;
+  cursor: pointer;
+}

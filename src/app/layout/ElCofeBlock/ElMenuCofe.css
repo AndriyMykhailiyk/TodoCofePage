@@ -1,0 +1,14 @@
+.LiElList {
+  list-style-type: none;
+}
+.wrapperSubheaderTextAword23 {
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 100px;
+}
+span {
+  padding-bottom: 15px;
+}
