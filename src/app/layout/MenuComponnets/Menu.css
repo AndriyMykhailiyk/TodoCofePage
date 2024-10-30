@@ -26,6 +26,8 @@
   padding-bottom: 63px;
 }
 .wrapperBtn {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 .listMenu {

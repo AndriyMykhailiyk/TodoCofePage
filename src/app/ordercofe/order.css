@@ -121,6 +121,7 @@
   padding-top: 2em;
 }
 .MainText {
+  justify-content: space-between;
   flex-direction: row;
   padding-bottom: 1.5em;
   display: flex;

@@ -15,6 +15,7 @@ export default function MeCofeAccount() {
   const HowyouLikedCofe = useLiked((state) => state.HowyouLikedCofe);
   const MeCofeName = useSetName((state) => state.MeCofeName);
   const [isButtonVisible, setButtonVisible] = useState(true);
+  const [isBlockVisible, setBlockVisible] = useState(true); // Стейт для контролю видимості блоку
 
   useEffect(() => {
     const savedVisibility = localStorage.getItem("isButtonVisible");
@@ -22,6 +23,7 @@ export default function MeCofeAccount() {
       setButtonVisible(JSON.parse(savedVisibility));
     }
   }, []);
+
   const combinedData = useMemo(
     () => ({
       DarkChoko,
@@ -72,9 +74,12 @@ export default function MeCofeAccount() {
     localStorage.removeItem("HowyouLikedCofe");
     localStorage.removeItem("CoffeeOrders"); // Очищення замовлень
 
-    // Сховати кнопку і зберегти стан
+    // Сховати кнопку і блок, і зберегти стан
     setButtonVisible(false);
+    setBlockVisible(false);
   };
+
+  if (!isBlockVisible) return null; // Не рендерити компонент, якщо блок невидимий
 
   return (
     <div className="wrapperFullBlock">

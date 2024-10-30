@@ -341,7 +341,7 @@ export default function OrderCofe() {
         <Alert
           onClose={handleClosePromoSnackbar}
           severity={badprice ? "error" : "success"}
-          sx={{ width: "100%" }}
+          sx={{ width: "200%" }}
         >
           {promoSnackbarMessage}
         </Alert>

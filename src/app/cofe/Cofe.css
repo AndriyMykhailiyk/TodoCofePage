@@ -162,3 +162,7 @@
   background-position: 200%0, 0 0;
   transition-duration: 1.5s;
 }
+
+div {
+  padding: 0;
+}
