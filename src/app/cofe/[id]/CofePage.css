@@ -1,0 +1,36 @@
+
+.HeaderComponent2 {
+    position: relative;
+    width: 100%;
+    z-index: 10; /* Поставте більше значення, щоб header був зверху */
+    background-color: white; /* Задній фон для видимості */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Легка тінь для відокремлення */
+  }
+  .SectionCofe {
+    display: flex;
+    padding-top: 2em;
+justify-content: center;  
+}
+.coffee-detail {
+    gap: 75px;
+    display: flex;
+}
+.WrapperTextAboutCofe {
+    padding-top: 30px;
+}
+
+.coffee_name {
+
+    padding-bottom: 12px;
+    font-size: 50px;
+}
+
+.rating2 {
+    padding-bottom: 15px;
+}
+.TipeCofee {
+    padding-top: 15px;
+}
+.HeaderTipeCofee {
+    font-weight: 400;
+}
