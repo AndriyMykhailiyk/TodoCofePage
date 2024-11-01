@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTypeCofe, useTypeCofeTwo } from "../store/store";
 import { useLiked, useSetName } from "../store/cindstore";
 import "./order.css";
@@ -32,6 +32,7 @@ export default function OrderCofe() {
   const [badprice, SetBedPrice] = useState(false);
   const [promoSnackbarOpen, setPromoSnackbarOpen] = useState(false); // Стан для відображення Snackbar про промокод
   const [promoSnackbarMessage, setPromoSnackbarMessage] = useState(""); // Повідомлення для Snackbar про промокод
+  const setCofePage = useSetCofePage;
 
   const HandleDescription = () => {
     setDescription(!descruption);
@@ -53,25 +54,26 @@ export default function OrderCofe() {
   useEffect(() => {
     const savedOrder = localStorage.getItem("CoffeeOrder");
     const savedName = localStorage.getItem("MeCofeName");
+  
     if (savedName) {
-      useSetCofePage(savedName);
+      setCofePage(savedName); // Використовуємо збережену функцію
     }
+  
     if (savedOrder) {
-      const { DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe } =
-        JSON.parse(savedOrder);
-
+      const { DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe } = JSON.parse(savedOrder);
+  
       useTypeCofe.setState({ DarkChoko, Cofeinnn });
       useTypeCofeTwo.setState({ TypeCofeTwo });
       useLiked.setState({ HowyouLikedCofe });
     }
-
+  
     if (!savedName) {
       setShowModal(true);
     }
-  }, [useSetCofePage]);
+  }, [setCofePage]);
 
   const handleModalSubmit = (name: string) => {
-    useSetCofePage(name);
+    setCofePage(name);
     localStorage.setItem("MeCofeName", name);
     setShowModal(false);
   };

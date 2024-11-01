@@ -7,15 +7,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AboutUs = () => {
   useEffect(() => {
-    gsap.utils.toArray(".revealUp").forEach((elem: any) => {
+    gsap.utils.toArray(".revealUp").forEach((elem) => {
+      const element = elem as HTMLElement; // Явно вказуємо тип
       ScrollTrigger.create({
-        trigger: elem,
+        trigger: element,
         start: "top 80%",
         end: "bottom 20%",
         markers: false,
         onEnter: () => {
           gsap.fromTo(
-            elem,
+            element,
             { y: 100, autoAlpha: 0 },
             {
               duration: 1.25,
@@ -28,14 +29,14 @@ const AboutUs = () => {
         },
         onLeave: () => {
           gsap.fromTo(
-            elem,
+            element,
             { autoAlpha: 1 },
             { autoAlpha: 0, overwrite: "auto" }
           );
         },
         onEnterBack: () => {
           gsap.fromTo(
-            elem,
+            element,
             { y: -100, autoAlpha: 0 },
             {
               duration: 1.25,
@@ -48,7 +49,7 @@ const AboutUs = () => {
         },
         onLeaveBack: () => {
           gsap.fromTo(
-            elem,
+            element,
             { autoAlpha: 1 },
             { autoAlpha: 0, overwrite: "auto" }
           );
@@ -56,6 +57,7 @@ const AboutUs = () => {
       });
     });
   }, []);
+  
 
   return (
     <>
@@ -67,13 +69,10 @@ const AboutUs = () => {
           </header>
           <main>
             <span className="revealUp">
-              <p className="SubheaderTextAbout">
-                Latte Cafe – це місцеве кафе та бар, сховане в кутку
-                Веллінгтона. Latte — це те, що ми любимо, у місті, яке ми
-                любимо. Ми постійно запасаємося місцевими продуктами та
-                випічкою. Візьміть із собою сім'ю, щоб перекусити, або
-                зустріньтеся з друзями, щоб випити кави чи гарячого напою.
-              </p>
+            <p className="SubheaderTextAbout">
+  Latte Cafe – це місцеве кафе та бар, сховане в кутку Веллінгтона. Latte — це те, що ми любимо, у місті, яке ми любимо. Ми постійно запасаємося місцевими продуктами та випічкою. Візьміть із собою сім&rsquo;ю, щоб перекусити, або зустріньтеся з друзями, щоб випити кави чи гарячого напою.
+</p>
+
             </span>
           </main>
         </div>
