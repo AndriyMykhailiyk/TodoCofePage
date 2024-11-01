@@ -194,6 +194,24 @@ a.secondary {
   font-weight: 600;
 }
 
+.ByCofeLink {
+  border-color: transparent;
+  background-color: #d27487;
+  border-radius: 5px;
+  padding: 8px 8px;
+  cursor: pointer;
+  font-style: normal;
+  font-size: 17px;
+  color: white;
+  font-weight: 600;
+}
+
+.ByCofeLink:hover {
+  background-color: #fc5375;
+  cursor: pointer;
+}
+
+
 .ByCofe:hover {
   cursor: pointer;
   font-style: normal;

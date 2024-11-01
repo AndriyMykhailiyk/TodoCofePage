@@ -15,7 +15,9 @@ const Header = () => {
             <ul className={styles.Ul}>
               <li className={styles.ByCofe}>
                 <Link href="/cofe" className={styles.ByCofe}>
+                  <button className={styles.ByCofeLink}>
                   Придбати каву
+                  </button>
                 </Link>
               </li>
             </ul>

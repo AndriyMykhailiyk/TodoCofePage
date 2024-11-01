@@ -15,7 +15,6 @@ export default function Home() {
         <AboutUs />
         <Menu />
         <PhotoComponent />
-   
         <Elcofe />
         <Footer />
       </section>

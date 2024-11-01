@@ -84,3 +84,7 @@ div {
     width: 100%;
   }
 }
+
+.PhotoMeCasomePhoto {
+  cursor: pointer;
+}

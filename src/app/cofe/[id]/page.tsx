@@ -11,7 +11,9 @@ import { Box, Rating } from "@mui/material";
 import { useState } from "react";
 import Diskount from "@/app/ordercofe/discount/Diskount";
 import { Snackbar } from "@mui/material";
-
+import { FaRaspberryPi } from "react-icons/fa6";
+import { GiCherry } from "react-icons/gi";
+import { BsFlower1 } from "react-icons/bs";
 const CoffeeDetail = () => {
   const params = useParams();
   const id = params.id;
@@ -113,6 +115,38 @@ const CoffeeDetail = () => {
           </span>
         </h1>
       </div>
+<hr/>
+
+                      <section className="WraperAboutSection">
+                        <main className="wrapperMain">
+                          <div className="TasteSection">
+                            <div className="HeaderText">
+                              <h2 className="HeaderTextTaske">Смакові ноти
+</h2>
+                            </div>
+                            <div className="wrapperIcons">
+                              <span className="wrapperBsFlower1">
+                              <BsFlower1 size={35}/>
+                              <p className="Text90">Flower</p>
+                              </span>
+                              <span className="wrapperBsFlower1">
+
+                              <GiCherry size={35}/ >
+                              <p className="Text90">Cherry</p>
+
+                              </span>
+                              <span className="wrapperBsFlower1">
+                           
+                              <FaRaspberryPi size={35}/>
+                              <p className="Text90">Raspberry</p>
+
+                              </span>
+                            </div>
+                          </div>
+                        </main>
+                      </section>
+
+
       <Snackbar
         open={promoSnackbarOpen}
         autoHideDuration={6000}
