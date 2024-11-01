@@ -11,15 +11,19 @@ export const CofeList = [
     slug: 'espresso1',
     id: 0,
     name: "MegaTop",
-    img: Photo1
+    img: Photo1,
+    paste: "Basil Coffee, Olive oil, Thyme"
   },
   { price: 20.92, type: "Medium", id: 1, name: "UltraTop",    slug: 'espresso2',
 
-  img: Photo2 },
+  img: Photo2,
+  paste: "Basil Coffee, Olive oil, Thyme" },
   { price: 13.25, type: "Light", id: 2, name: "SuperTop",    slug: 'espresso3',
 
-  img: Photo3},
+  img: Photo3,
+  paste: "Basil Coffee, Olive oil, Thyme"},
   { price: 45.67, type: "Ultra", id: 3, name: "Cofe for Pro",    slug: 'espresso4',
 
-  img: Photo4 },
+  img: Photo4,
+  paste: "Basil Coffee, Olive oil, Thyme" },
 ];

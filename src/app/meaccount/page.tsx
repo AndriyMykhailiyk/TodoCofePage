@@ -5,6 +5,7 @@ import { useLiked, useSetName } from "../store/cindstore";
 import { useTypeCofe, useTypeCofeTwo } from "../store/store";
 import { GoTrash } from "react-icons/go";
 import Image from "next/image";
+import { useRouter } from "next/navigation"; // Імпорт useRouter
 import "./meaccount.css";
 import PhotoMeCofe from "./cofephoto/kawa_BEANS.png";
 
@@ -15,7 +16,8 @@ export default function MeCofeAccount() {
   const HowyouLikedCofe = useLiked((state) => state.HowyouLikedCofe);
   const MeCofeName = useSetName((state) => state.MeCofeName);
   const [isButtonVisible, setButtonVisible] = useState(true);
-  const [isBlockVisible, setBlockVisible] = useState(true); // Стейт для контролю видимості блоку
+  const [isBlockVisible, setBlockVisible] = useState(true);
+  const router = useRouter(); // Ініціалізація useRouter
 
   useEffect(() => {
     const savedVisibility = localStorage.getItem("isButtonVisible");
@@ -34,7 +36,6 @@ export default function MeCofeAccount() {
     [DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe]
   );
 
-  // Відновлення даних з localStorage при ініціалізації
   useEffect(() => {
     const SavedDarkChoko = localStorage.getItem("DarkChoko");
     const SavedCofeinnn = localStorage.getItem("Cofeinnn");
@@ -50,36 +51,35 @@ export default function MeCofeAccount() {
     if (SavedHowyouLikedCofe) {
       useLiked.setState({ HowyouLikedCofe: SavedHowyouLikedCofe });
     }
-  }, []); // Запустити тільки один раз при монтуванні компонента
+  }, []);
 
-  // Збереження даних в localStorage при зміні значень
   useEffect(() => {
     localStorage.setItem("DarkChoko", DarkChoko);
     localStorage.setItem("Cofeinnn", Cofeinnn);
     localStorage.setItem("TypeCofeTwo", JSON.stringify(TypeCofeTwo));
     localStorage.setItem("HowyouLikedCofe", HowyouLikedCofe);
-    localStorage.setItem("isButtonVisible", JSON.stringify(isButtonVisible)); // Збереження стану видимості кнопки
+    localStorage.setItem("isButtonVisible", JSON.stringify(isButtonVisible));
   }, [DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe, isButtonVisible]);
 
   const handleDeleteAll = () => {
-    // Очищення всіх даних зі стану
     useTypeCofe.setState({ DarkChoko: "", Cofeinnn: "" });
     useTypeCofeTwo.setState({ TypeCofeTwo: [] });
     useLiked.setState({ HowyouLikedCofe: "" });
 
-    // Очищення localStorage
     localStorage.removeItem("DarkChoko");
     localStorage.removeItem("Cofeinnn");
     localStorage.removeItem("TypeCofeTwo");
     localStorage.removeItem("HowyouLikedCofe");
-    localStorage.removeItem("CoffeeOrders"); // Очищення замовлень
+    localStorage.removeItem("CoffeeOrders");
 
-    // Сховати кнопку і блок, і зберегти стан
     setButtonVisible(false);
     setBlockVisible(false);
+
+    // Перенаправлення на головну сторінку
+    router.push("/");
   };
 
-  if (!isBlockVisible) return null; // Не рендерити компонент, якщо блок невидимий
+  if (!isBlockVisible) return null;
 
   return (
     <div className="wrapperFullBlock">
@@ -104,7 +104,7 @@ export default function MeCofeAccount() {
               <span className="LB"> / LB</span>
             </div>
             {Object.entries(combinedData).map(([key, value]) => (
-              <div key={key}>
+              <div key={key} className="WrapperSec">
                 <h6 className="HeaderTxt">
                   {key === "DarkChoko"
                     ? "Темний шоколад"

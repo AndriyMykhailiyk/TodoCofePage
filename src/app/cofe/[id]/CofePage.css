@@ -36,13 +36,27 @@ justify-content: center;
     font-weight: 400;
 }
 .WrapperPrice {
+  
     padding-bottom: 15px;
     align-items: center;
     display: flex;
     justify-content: space-between;
 }
+
+.WrapperTaste {   
+  flex-direction: column;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: space-between;}
+
 .PriceText {
     font-size: 22px;
+}
+.PriceText2 {
+  padding-bottom: 5px;
+  font-size: 22px;
+
 }
 
 .PriceValue {

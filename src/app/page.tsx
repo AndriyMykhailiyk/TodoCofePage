@@ -4,9 +4,7 @@ import styles from "./page.module.css";
 import Main from "./MainComponent/Main";
 import AboutUs from "./layout/AboutUs/AboutUs";
 import Menu from "./layout/MenuComponnets/Menu";
-import Location from "./layout/Location/Location";
 import PhotoComponent from "./layout/PhotoComponents/PhotoComponent";
-import Aword from "./layout/Aword/Aword";
 import Footer from "./MainComponent/footer/Footer";
 import Elcofe from "./layout/ElCofeBlock/ElcofeBlock";
 export default function Home() {
@@ -16,9 +14,8 @@ export default function Home() {
         <Main />
         <AboutUs />
         <Menu />
-        <Location />
         <PhotoComponent />
-        <Aword />
+   
         <Elcofe />
         <Footer />
       </section>

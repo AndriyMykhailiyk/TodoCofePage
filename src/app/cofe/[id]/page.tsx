@@ -99,17 +99,25 @@ const CoffeeDetail = () => {
 
 
 <hr/>
-<div className="TipeCofee">
-  <h2 className="HeaderTipeCofee">Тип кави:</h2>
-      <p>{coffee.type}</p>
-      </div>
+<div className="WrapperTaste">
+      <h3 className="PriceText2">Тип: </h3>
+        <p className="PriceValue">{coffee.type}
+      </p></div>
       <div className="WrapperPrice">
       <h3 className="PriceText">Ціна: </h3>
         <p className="PriceValue">${price.toFixed(2)}
       </p></div>
       
 <hr/>
+<div className="WrapperTaste">
+      <h3 className="PriceText2">Смаки: </h3>
+        <p className="PriceValue">{coffee.paste}
+      </p></div>
+      
+<hr/>
+
       </div>
+      
     </div>
     </section>
     <div className="wrapperdiscount">

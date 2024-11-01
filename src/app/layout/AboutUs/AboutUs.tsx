@@ -62,7 +62,8 @@ const AboutUs = () => {
       <section className="wrapperAbout">
         <div className="content-iside">
           <header className="headerTextAbout">
-            <p className="revealUp">About Us</p>
+            <p className="revealUp">Кава свіжого обсмаження від виробника в зерні та мелена
+</p>
           </header>
           <main>
             <span className="revealUp">
