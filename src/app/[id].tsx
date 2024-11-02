@@ -1,14 +1,14 @@
-"use client"
-import { useRouter } from 'next/router';
-import { CofeList } from '../../src/app/(api)/CofeApi';
-import Image from 'next/image';
+"use client";
+import { useRouter } from "next/router";
+import { CofeList } from "../../src/app/(api)/CofeApi";
+import Image from "next/image";
 
 const CofePage = () => {
   const router = useRouter();
   const { id } = router.query;
 
   // Перевірка, чи slug є рядком
-  if (typeof id !== 'string') {
+  if (typeof id !== "string") {
     return <div>Невірний формат slug</div>;
   }
 

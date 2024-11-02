@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useMemo, useState } from "react";
 import { useLiked, useSetName } from "../store/cindstore";
 import { useTypeCofe, useTypeCofeTwo } from "../store/store";
@@ -9,6 +8,14 @@ import { useRouter } from "next/navigation"; // Імпорт useRouter
 import "./meaccount.css";
 import PhotoMeCofe from "./cofephoto/kawa_BEANS.png";
 
+interface CoffeeOrder {
+  id: number;
+  name: string;
+  price: number;
+  img: string;
+  type: string;
+  paste: string;
+}
 export default function MeCofeAccount() {
   const DarkChoko = useTypeCofe((state) => state.DarkChoko);
   const Cofeinnn = useTypeCofe((state) => state.Cofeinnn);
@@ -17,12 +24,18 @@ export default function MeCofeAccount() {
   const MeCofeName = useSetName((state) => state.MeCofeName);
   const [isButtonVisible, setButtonVisible] = useState(true);
   const [isBlockVisible, setBlockVisible] = useState(true);
+  const [coffeeOrders, setCoffeeOrders] = useState<CoffeeOrder[]>([]);
   const router = useRouter(); // Ініціалізація useRouter
 
   useEffect(() => {
     const savedVisibility = localStorage.getItem("isButtonVisible");
     if (savedVisibility !== null) {
       setButtonVisible(JSON.parse(savedVisibility));
+    }
+
+    const savedCoffeeOrders = localStorage.getItem("CoffeeOrders");
+    if (savedCoffeeOrders) {
+      setCoffeeOrders(JSON.parse(savedCoffeeOrders));
     }
   }, []);
 
@@ -117,6 +130,12 @@ export default function MeCofeAccount() {
                 <p className="value">
                   {Array.isArray(value) ? value.join(", ") : value}
                 </p>
+              </div>
+            ))}
+            {coffeeOrders.map((order, index) => (
+              <div key={index} className="WrapperSec">
+                <h6 className="HeaderTxt">Замовлення кави</h6>
+                <p className="value">{order.name}</p>
               </div>
             ))}
           </div>

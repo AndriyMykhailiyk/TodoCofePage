@@ -54,19 +54,20 @@ export default function OrderCofe() {
   useEffect(() => {
     const savedOrder = localStorage.getItem("CoffeeOrder");
     const savedName = localStorage.getItem("MeCofeName");
-  
+
     if (savedName) {
       setCofePage(savedName); // Використовуємо збережену функцію
     }
-  
+
     if (savedOrder) {
-      const { DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe } = JSON.parse(savedOrder);
-  
+      const { DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe } =
+        JSON.parse(savedOrder);
+
       useTypeCofe.setState({ DarkChoko, Cofeinnn });
       useTypeCofeTwo.setState({ TypeCofeTwo });
       useLiked.setState({ HowyouLikedCofe });
     }
-  
+
     if (!savedName) {
       setShowModal(true);
     }

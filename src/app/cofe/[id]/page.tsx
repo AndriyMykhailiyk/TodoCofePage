@@ -1,19 +1,33 @@
 "use client";
 import "../../ordercofe/order.css";
-import './CofePage.css'
-import { useParams } from 'next/navigation';
-import { CofeList } from '../../(api)/CofeApi';
-import Image from 'next/image';
+import "./CofePage.css";
+import { useParams } from "next/navigation";
+import { CofeList } from "../../(api)/CofeApi";
+import Image from "next/image";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import Link from 'next/link';
-import { IoBasketOutline } from 'react-icons/io5';
+import Link from "next/link";
+import { IoBasketOutline } from "react-icons/io5";
 import { Box, Rating } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Diskount from "@/app/ordercofe/discount/Diskount";
 import { Snackbar } from "@mui/material";
 import { FaRaspberryPi } from "react-icons/fa6";
 import { GiCherry } from "react-icons/gi";
 import { BsFlower1 } from "react-icons/bs";
+import { PiCoffeeBean } from "react-icons/pi";
+import { SiCoffeescript } from "react-icons/si";
+import { IoMdCheckmark } from "react-icons/io";
+import Elcofe from "../../../app/layout/ElCofeBlock/ElcofeBlock";
+
+interface CoffeeOrder {
+  id: number;
+  name: string;
+  price: number;
+  img: string;
+  type: string;
+  paste: string;
+}
+
 const CoffeeDetail = () => {
   const params = useParams();
   const id = params.id;
@@ -24,6 +38,51 @@ const CoffeeDetail = () => {
   const [badprice, SetBedPrice] = useState(false);
   const [promoSnackbarMessage, setPromoSnackbarMessage] = useState("");
   const [promoSnackbarOpen, setPromoSnackbarOpen] = useState(false);
+  const [isAdded, SetisAdded] = useState(false);
+  const [coffeeOrders, setCoffeeOrders] = useState<CoffeeOrder[]>([]);
+
+  useEffect(() => {
+    // Відновлення стану isAdded з localStorage
+    const savedIsAdded = localStorage.getItem(`isAdded_${id}`);
+    if (savedIsAdded) {
+      SetisAdded(JSON.parse(savedIsAdded));
+    }
+
+    // Відновлення списку coffeeOrders з localStorage
+    const savedCoffeeOrders = localStorage.getItem("CoffeeOrders");
+    if (savedCoffeeOrders) {
+      setCoffeeOrders(JSON.parse(savedCoffeeOrders));
+    }
+  }, [id]);
+
+  const HandleKlickBtn = () => {
+    if (coffee) {
+      const coffeeOrder: CoffeeOrder = {
+        id: coffee.id,
+        name: coffee.name,
+        price: coffee.price,
+        img: typeof coffee.img === "string" ? coffee.img : coffee.img.src, // Перетворення img на рядок
+        type: coffee.type,
+        paste: coffee.paste,
+      };
+
+      if (isAdded) {
+        // Видалення кави зі списку
+        const updatedOrders = coffeeOrders.filter(
+          (order) => order.id !== coffeeOrder.id
+        );
+        setCoffeeOrders(updatedOrders);
+        localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
+      } else {
+        // Додавання кави до списку
+        const updatedOrders = [...coffeeOrders, coffeeOrder];
+        setCoffeeOrders(updatedOrders);
+        localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
+      }
+      SetisAdded(!isAdded);
+      localStorage.setItem(`isAdded_${id}`, JSON.stringify(!isAdded));
+    }
+  };
 
   if (!coffee) return <p>Кава не знайдена</p>;
 
@@ -73,7 +132,12 @@ const CoffeeDetail = () => {
       <section className="SectionCofe">
         <div className="coffee-detail">
           <div className="WrapperPhoto">
-            <Image src={coffee.img} alt={coffee.name} width={560} height={720} />
+            <Image
+              src={coffee.img}
+              alt={coffee.name}
+              width={560}
+              height={720}
+            />
           </div>
           <div className="WrapperTextAboutCofe">
             <h1 className="coffee_name">{coffee.name}</h1>
@@ -103,7 +167,23 @@ const CoffeeDetail = () => {
               <h3 className="PriceText2">Смаки: </h3>
               <p className="PriceValue">{coffee.paste}</p>
             </div>
+
             <hr />
+            <div className="wrapperGet">
+              <IoMdCheckmark size={26} fill="#0bc040" />
+              <p className="wrapperGetText">В наявності </p>
+              <div className="CofeText">
+                <p className="wrapperGetText3">Код товару: 2442055 </p>
+              </div>
+            </div>
+
+            <section className="BtnSec9090">
+              <div className="wrapperBtn">
+                <button className="NexPageBtn" onClick={HandleKlickBtn}>
+                  {isAdded ? "Додано" : "Додати до списку"}
+                </button>
+              </div>
+            </section>
           </div>
         </div>
       </section>
@@ -115,38 +195,75 @@ const CoffeeDetail = () => {
           </span>
         </h1>
       </div>
-<hr/>
+      <hr />
 
-                      <section className="WraperAboutSection">
-                        <main className="wrapperMain">
-                          <div className="TasteSection">
-                            <div className="HeaderText">
-                              <h2 className="HeaderTextTaske">Смакові ноти
-</h2>
-                            </div>
-                            <div className="wrapperIcons">
-                              <span className="wrapperBsFlower1">
-                              <BsFlower1 size={35}/>
-                              <p className="Text90">Flower</p>
-                              </span>
-                              <span className="wrapperBsFlower1">
-
-                              <GiCherry size={35}/ >
-                              <p className="Text90">Cherry</p>
-
-                              </span>
-                              <span className="wrapperBsFlower1">
-                           
-                              <FaRaspberryPi size={35}/>
-                              <p className="Text90">Raspberry</p>
-
-                              </span>
-                            </div>
-                          </div>
-                        </main>
-                      </section>
-
-
+      <section className="WraperAboutSection">
+        <section className="wrapperMain">
+          <div className="TasteSection">
+            <div className="HeaderText">
+              <h3 className="HeaderTextTaske">Смакові ноти</h3>
+            </div>
+            <div className="wrapperIcons">
+              <span className="wrapperBsFlower1">
+                <BsFlower1 size={26} />
+                <p className="Text90">Flower</p>
+              </span>
+              <span className="wrapperBsFlower1">
+                <GiCherry size={26} />
+                <p className="Text90">Cherry</p>
+              </span>
+              <span className="wrapperBsFlower1">
+                <FaRaspberryPi size={26} />
+                <p className="Text90">Raspberry</p>
+              </span>
+            </div>
+          </div>
+          <div className="TasteSection">
+            <div className="HeaderText">
+              <h3 className="HeaderTextTaske">Обсмаження</h3>
+            </div>
+            <div className="wrapperIcons">
+              <span className="wrapperBsFlower12">
+                <PiCoffeeBean size={26} fill="#c7b299" />
+                <PiCoffeeBean size={26} fill="#9b8060" />
+                <PiCoffeeBean size={26} fill="#836849" />
+                <PiCoffeeBean size={26} fill="#77562f" />
+              </span>
+              <div className="TextDesckCofe">
+                <p className="PowerFullText">Потужна</p>
+              </div>
+            </div>
+          </div>
+          <div className="TasteSection">
+            <div className="wrapperIcons">
+              <div className="TextDesckCofe3">
+                <h1 className="OneHundret">100%</h1>
+                <p className="PowerFullText3">aрабіка</p>
+              </div>
+              <span className="wrapperBsFlower12">
+                <SiCoffeescript size={35} fill="#482809" />
+              </span>
+            </div>
+          </div>
+          <div className="TasteSection">
+            <div className="wrapperIcons">
+              <div className="TextDesckCofe">
+                <h4 className="OneHundret3">Походження</h4>
+                <p className="PowerFullText3">Латинська Америка</p>
+              </div>
+            </div>
+          </div>
+          <div className="TasteSection">
+            <div className="wrapperIcons">
+              <div className="TextDesckCofe">
+                <h4 className="OneHundret3">Виробника</h4>
+                <p className="PowerFullText3">Італія</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+      <Elcofe />
       <Snackbar
         open={promoSnackbarOpen}
         autoHideDuration={6000}

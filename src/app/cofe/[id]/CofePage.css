@@ -1,141 +1,140 @@
-
 .HeaderComponent2 {
-    position: relative;
-    width: 100%;
-    z-index: 10; /* Поставте більше значення, щоб header був зверху */
-    background-color: white; /* Задній фон для видимості */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Легка тінь для відокремлення */
-  }
-  .SectionCofe {
-    display: flex;
-    padding-top: 2em;
-justify-content: center;  
+  position: relative;
+  width: 100%;
+  z-index: 10; /* Поставте більше значення, щоб header був зверху */
+  background-color: white; /* Задній фон для видимості */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Легка тінь для відокремлення */
+}
+.SectionCofe {
+  display: flex;
+  padding-top: 2em;
+  justify-content: center;
 }
 .coffee-detail {
-    gap: 75px;
-    display: flex;
+  gap: 75px;
+  display: flex;
 }
 .WrapperTextAboutCofe {
-    padding-top: 30px;
+  color: black;
+  padding-top: 30px;
 }
 
 .coffee_name {
-
-    padding-bottom: 12px;
-    font-size: 50px;
+  padding-bottom: 12px;
+  font-size: 50px;
 }
 
 .rating2 {
-    padding-bottom: 15px;
+  padding-bottom: 15px;
 }
 .TipeCofee {
-    padding-bottom: 20PX;
-    padding-top: 15px;
+  padding-bottom: 20px;
+  padding-top: 15px;
 }
 .HeaderTipeCofee {
-    font-weight: 400;
+  font-weight: 400;
 }
 .WrapperPrice {
-  
-    padding-bottom: 15px;
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
+  padding-bottom: 15px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
 
-.WrapperTaste {   
+.WrapperTaste {
   flex-direction: column;
   padding-top: 15px;
   padding-bottom: 15px;
   display: flex;
-  justify-content: space-between;}
+  justify-content: space-between;
+}
 
 .PriceText {
-    font-size: 22px;
+  font-size: 22px;
 }
 .PriceText2 {
   padding-bottom: 5px;
   font-size: 22px;
-
 }
 
 .PriceValue {
-    font-family: cursive;
-    font-size: 24px;
-    font-weight: 500;
+  font-family: cursive;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    background: white;
-    padding: 40px 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 600px;
-  }
-  
-  .modal-content input {
-    width: 100%;
-    padding: 10px;
-    margin: 20px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .modal-content button {
-    padding: 10px 20px;
-    background: #937031;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .HeaderCofeText {
-    color: black;
-  }
-  .wrapperdiscount {
-    margin-bottom: 2em;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
-  .wrapperMain {
-    padding: 3em 20em;
-  }
+.modal-content {
+  background: white;
+  padding: 40px 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+}
 
-  .wrapperMain {
-    align-items: baseline;
-  }
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
-  .HeaderTextTaske {
-padding-bottom: 15px;
-  }
+.modal-content button {
+  padding: 10px 20px;
+  background: #937031;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-  .TasteSection {
-    float: left;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+.HeaderCofeText {
+  color: black;
+}
+.wrapperdiscount {
+  margin-bottom: 2em;
+}
 
-  }
+.wrapperMain {
+  display: flex;
+  justify-content: space-around;
+  padding: 3em 15em;
+  align-items: flex-start;
+}
 
-  .wrapperIcons {display: flex;
-    gap: 20px;
-  justify-content: space-around;}
+.HeaderTextTaske {
+  font-weight: 600;
+  padding-bottom: 15px;
+}
 
+.TasteSection {
+  float: left;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
 
-  .wrapperBsFlower1 {
+.wrapperIcons {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+}
+
+.wrapperBsFlower1 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,4 +142,50 @@ padding-bottom: 15px;
 
 .Text90 {
   margin-top: 12px;
+}
+.WraperAboutSection {
+  color: black;
+}
+.wrapperBsFlower12 {
+  display: flex;
+}
+.PowerFullText {
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.OneHundret {
+  font-size: 25px;
+}
+.PowerFullText3 {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.TextDesckCofe {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.TextDesckCofe3 {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.OneHundret3 {
+  padding-bottom: 1em;
+}
+
+.wrapperGet {
+  display: flex;
+  color: #0bc040;
+  align-items: center;
+  padding: 20px 0px;
+}
+.wrapperGetText3 {
+  color: rgb(181, 177, 177);
+  font-weight: 200;
+}
+.CofeText {
+  padding-left: 2em;
 }

@@ -10,14 +10,17 @@
   gap: 100px;
 }
 .headerTextAword56 {
-  padding: 2em 11em;
+  padding: 2em 8em;
 }
 .headerTextAword23 {
   padding-bottom: 10px;
-  color: #4A2B33;
+  color: #4a2b33;
   font-size: 47px;
   font-weight: 600;
-  font-family: var(--font-suisse-intl), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: var(--font-suisse-intl), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
   line-height: 62.6px;
 }
 
@@ -28,7 +31,6 @@ div {
   background-color: antiquewhite;
   position: relative;
   overflow: hidden;
-  height: 360px; /* висота, рівна зображенню */
 }
 
 .wrapperPhotoMeCofe {
@@ -40,7 +42,6 @@ div {
   transform: translateY(-20px);
   opacity: 0;
 }
-
 
 .hiddenText {
   color: black;
@@ -63,7 +64,7 @@ div {
 .TextBlockEl {
   padding-top: 1em;
 }
-.PriceBlock{
+.PriceBlock {
   padding-top: 5px;
 }
 
@@ -86,5 +87,14 @@ div {
 }
 
 .PhotoMeCasomePhoto {
-  cursor: pointer;
+  max-width: 100%; /* Зображення не буде перевищувати ширину контейнера */
+  height: auto; /* Зберігає пропорції зображення */
+  object-fit: cover; /* Забезпечує відповідний вигляд, якщо зображення обмежено */
+}
+
+@media (max-width: 768px) {
+  .PhotoMeCasomePhoto {
+    width: 100%; /* Зменшує ширину до 100% контейнера */
+    height: auto;
+  }
 }
