@@ -24,7 +24,9 @@ const Elcofe = () => {
                       className="PhotoMeCasomePhoto"
                     />
                   </div>
-                  <div className="hiddenText">Ваш текст тут</div>
+                  <div className="hiddenText">
+                    {i.paste} {/* Показуємо інгредієнти */}
+                  </div>
                 </div>
                 <div className="TextBlockEl">
                   <Link href={`/cofe/${i.id}`} style={{ fontStyle: "normal" }}>

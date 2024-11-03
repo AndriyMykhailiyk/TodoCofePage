@@ -98,3 +98,43 @@ div {
     height: auto;
   }
 }
+
+.wrapperPhotoBack {
+  background-color: antiquewhite;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.wrapperPhotoMeCofe {
+  padding: 1em;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.wrapperPhotoBack:hover {
+  transform: scale(1.1); /* Збільшуємо блок при наведенні */
+}
+
+.hiddenText {
+  color: black;
+  top: 0%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 1.2em;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Напівпрозорий фон для тексту */
+}
+
+.wrapperPhotoBack:hover .hiddenText {
+  opacity: 1; /* Показуємо текст при наведенні */
+  cursor: pointer;
+}
