@@ -26,6 +26,8 @@ export default function MeCofeAccount() {
   const [isBlockVisible, setBlockVisible] = useState(true);
   const [coffeeOrders, setCoffeeOrders] = useState<CoffeeOrder[]>([]);
   const router = useRouter(); // Ініціалізація useRouter
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   useEffect(() => {
     const savedVisibility = localStorage.getItem("isButtonVisible");
@@ -38,6 +40,14 @@ export default function MeCofeAccount() {
       setCoffeeOrders(JSON.parse(savedCoffeeOrders));
     }
   }, []);
+
+  const handleRemoveOrder = (orderId: number) => {
+    const updatedOrders = coffeeOrders.filter((order) => order.id !== orderId);
+    setCoffeeOrders(updatedOrders);
+    localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
+    setSnackbarMessage("Товар видалено з корзини");
+    setSnackbarOpen(true);
+  };
 
   const combinedData = useMemo(
     () => ({
@@ -132,12 +142,6 @@ export default function MeCofeAccount() {
                 </p>
               </div>
             ))}
-            {coffeeOrders.map((order, index) => (
-              <div key={index} className="WrapperSec">
-                <h6 className="HeaderTxt">Замовлення кави</h6>
-                <p className="value">{order.name}</p>
-              </div>
-            ))}
           </div>
           {isButtonVisible && (
             <GoTrash
@@ -148,6 +152,38 @@ export default function MeCofeAccount() {
             />
           )}
         </div>
+        <section className="MeCofeOrders">
+          <div className="wrapperOrders">
+            {coffeeOrders.map((order, index) => (
+              <div key={index} className="WrapperSec">
+                <div className="PhotoWrapper">
+                  <Image
+                    src={order.img}
+                    alt="TextPhotoCoffe"
+                    width={230}
+                    height={260}
+                    className="Image"
+                  />
+                </div>
+
+                <div className="TextAboutCofePage">
+                  <div className="wrapperText">
+                    <h6 className="HeaderTxt">Замовлення кави</h6>
+                    <p className="value">{order.name}</p>
+                    <p className="value">{order.type}</p>
+                    <p className="value">{order.paste}</p>
+                  </div>
+                  <button
+                    onClick={() => handleRemoveOrder(order.id)}
+                    className="NexPageBtn2"
+                  >
+                    Видалити
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

@@ -315,7 +315,12 @@ export default function OrderCofe() {
             </h1>
           </div>
         </section>
+
+        <section className="AboutCofe">
+          <div className="WrapperAboutCofe"></div>
+        </section>
       </div>
+
       <div className="wrapperFootter">
         <Footer />
       </div>

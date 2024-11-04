@@ -1,4 +1,6 @@
 "use client";
+
+import React, { useState, useEffect } from "react";
 import "../../ordercofe/order.css";
 import "./CofePage.css";
 import { useParams } from "next/navigation";
@@ -7,10 +9,7 @@ import Image from "next/image";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
 import { IoBasketOutline } from "react-icons/io5";
-import { Box, Rating } from "@mui/material";
-import { useState, useEffect } from "react";
 import Diskount from "@/app/ordercofe/discount/Diskount";
-import { Snackbar } from "@mui/material";
 import { FaRaspberryPi } from "react-icons/fa6";
 import { GiCherry } from "react-icons/gi";
 import { BsFlower1 } from "react-icons/bs";
@@ -18,6 +17,8 @@ import { PiCoffeeBean } from "react-icons/pi";
 import { SiCoffeescript } from "react-icons/si";
 import { IoMdCheckmark } from "react-icons/io";
 import Elcofe from "../../../app/layout/ElCofeBlock/ElcofeBlock";
+import { Box, Snackbar, Alert, Rating } from "@mui/material";
+import useCountCofe from "@/app/store/countCofe";
 
 interface CoffeeOrder {
   id: number;
@@ -40,51 +41,82 @@ const CoffeeDetail = () => {
   const [promoSnackbarOpen, setPromoSnackbarOpen] = useState(false);
   const [isAdded, SetisAdded] = useState(false);
   const [coffeeOrders, setCoffeeOrders] = useState<CoffeeOrder[]>([]);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const setAddOrderOrder = useCountCofe((state) => state.setAddOrderOrder);
+  const countCofe = useCountCofe((state) => state.CountCofe);
+
+  const handleCloseSnackbar = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackbarOpen(false);
+  };
 
   useEffect(() => {
-    // Відновлення стану isAdded з localStorage
-    const savedIsAdded = localStorage.getItem(`isAdded_${id}`);
-    if (savedIsAdded) {
-      SetisAdded(JSON.parse(savedIsAdded));
+    const savedCountCofe = localStorage.getItem("countCofe");
+    if (savedCountCofe) {
+      setAddOrderOrder(parseInt(savedCountCofe, 10));
     }
+  }, [setAddOrderOrder]);
 
-    // Відновлення списку coffeeOrders з localStorage
+  useEffect(() => {
+    localStorage.setItem("countCofe", countCofe.toString());
+  }, [countCofe]);
+
+  useEffect(() => {
     const savedCoffeeOrders = localStorage.getItem("CoffeeOrders");
     if (savedCoffeeOrders) {
       setCoffeeOrders(JSON.parse(savedCoffeeOrders));
     }
-  }, [id]);
+  }, []);
+
+  useEffect(() => {
+    const isCoffeeAdded = coffeeOrders.some((order) => order.id === Number(id));
+    SetisAdded(isCoffeeAdded);
+  }, [coffeeOrders, id]);
+
+  useEffect(() => {
+    setAddOrderOrder(coffeeOrders.length);
+  }, [coffeeOrders, setAddOrderOrder]);
+
+  if (!coffee) {
+    return <div>Немає</div>;
+  }
 
   const HandleKlickBtn = () => {
-    if (coffee) {
-      const coffeeOrder: CoffeeOrder = {
-        id: coffee.id,
-        name: coffee.name,
-        price: coffee.price,
-        img: typeof coffee.img === "string" ? coffee.img : coffee.img.src, // Перетворення img на рядок
-        type: coffee.type,
-        paste: coffee.paste,
-      };
+    if (!coffee) return;
 
-      if (isAdded) {
-        // Видалення кави зі списку
-        const updatedOrders = coffeeOrders.filter(
-          (order) => order.id !== coffeeOrder.id
-        );
-        setCoffeeOrders(updatedOrders);
-        localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
-      } else {
-        // Додавання кави до списку
-        const updatedOrders = [...coffeeOrders, coffeeOrder];
-        setCoffeeOrders(updatedOrders);
-        localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
-      }
-      SetisAdded(!isAdded);
-      localStorage.setItem(`isAdded_${id}`, JSON.stringify(!isAdded));
+    const coffeeOrder: CoffeeOrder = {
+      id: coffee.id,
+      name: coffee.name,
+      price: coffee.price,
+      img: typeof coffee.img === "string" ? coffee.img : coffee.img.src,
+      type: coffee.type,
+      paste: coffee.paste,
+    };
+
+    if (isAdded) {
+      const updatedOrders = coffeeOrders.filter(
+        (order) => order.id !== coffeeOrder.id
+      );
+      setCoffeeOrders(updatedOrders);
+      localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
+      SetisAdded(false);
+      setSnackbarMessage("Товар видалено з корзини");
+    } else {
+      const updatedOrders = [...coffeeOrders, coffeeOrder];
+      setCoffeeOrders(updatedOrders);
+      localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
+      SetisAdded(true);
+      setSnackbarMessage("Товар додано до корзини");
     }
-  };
 
-  if (!coffee) return <p>Кава не знайдена</p>;
+    setSnackbarOpen(true);
+  };
 
   const handleDiskountSubmit = (code: string) => {
     if (code === "Промокод") {
@@ -126,6 +158,7 @@ const CoffeeDetail = () => {
           </div>
           <Link href="/meaccount">
             <IoBasketOutline color="#d27487" size={35} />
+            <span className="basketCount">{countCofe}</span>
           </Link>
         </div>
       </header>
@@ -180,7 +213,7 @@ const CoffeeDetail = () => {
             <section className="BtnSec9090">
               <div className="wrapperBtn">
                 <button className="NexPageBtn" onClick={HandleKlickBtn}>
-                  {isAdded ? "Додано" : "Додати до списку"}
+                  {isAdded ? "Прибрати з корзини" : "Додати до списку"}
                 </button>
               </div>
             </section>
@@ -270,6 +303,20 @@ const CoffeeDetail = () => {
         onClose={() => setPromoSnackbarOpen(false)}
         message={promoSnackbarMessage}
       />
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </>
   );
 };
