@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useTypeCofe, useTypeCofeTwo } from "../store/store";
 import { useLiked, useSetName } from "../store/cindstore";
 import "./order.css";
+import "../cofe/[id]/CofePage.css";
+
 import Image from "next/image";
 import MeCofePhoto from "./mecofephoto/Cofe.png";
 import { IoIosArrowRoundBack } from "react-icons/io";
@@ -14,6 +16,15 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import Rating from "@mui/material/Rating";
 import { Box, Snackbar, Alert } from "@mui/material";
 import Diskount from "./discount/Diskount"; // Імпортуємо компонент Diskount
+import { GiCherry } from "react-icons/gi";
+import { BsFlower1 } from "react-icons/bs";
+import { PiCoffeeBean } from "react-icons/pi";
+import { SiCoffeescript } from "react-icons/si";
+import { IoMdCheckmark } from "react-icons/io";
+import { FaRaspberryPi } from "react-icons/fa6";
+import Elcofe from "../layout/ElCofeBlock/ElcofeBlock";
+import Insta from "../cofe/[id]/SvgIcon/pngwing.com (4).png";
+import FaceBook from "../cofe/[id]/SvgIcon/pngwing.com (5).png";
 
 export default function OrderCofe() {
   const DarkChoko = useTypeCofe((state) => state.DarkChoko);
@@ -316,9 +327,109 @@ export default function OrderCofe() {
           </div>
         </section>
 
-        <section className="AboutCofe">
-          <div className="WrapperAboutCofe"></div>
+        <section className="WraperAboutSection">
+          <section className="wrapperMain">
+            <div className="TasteSection">
+              <div className="HeaderText">
+                <h3 className="HeaderTextTaske">Смакові ноти</h3>
+              </div>
+              <div className="wrapperIcons">
+                <span className="wrapperBsFlower1">
+                  <BsFlower1 size={26} />
+                  <p className="Text90">Flower</p>
+                </span>
+                <span className="wrapperBsFlower1">
+                  <GiCherry size={26} />
+                  <p className="Text90">Cherry</p>
+                </span>
+                <span className="wrapperBsFlower1">
+                  <FaRaspberryPi size={26} />
+                  <p className="Text90">Raspberry</p>
+                </span>
+              </div>
+            </div>
+            <div className="TasteSection">
+              <div className="HeaderText">
+                <h3 className="HeaderTextTaske">Обсмаження</h3>
+              </div>
+              <div className="wrapperIcons">
+                <span className="wrapperBsFlower12">
+                  <PiCoffeeBean size={26} fill="#c7b299" />
+                  <PiCoffeeBean size={26} fill="#9b8060" />
+                  <PiCoffeeBean size={26} fill="#836849" />
+                  <PiCoffeeBean size={26} fill="#77562f" />
+                </span>
+                <div className="TextDesckCofe">
+                  <p className="PowerFullText">Потужна</p>
+                </div>
+              </div>
+            </div>
+            <div className="TasteSection">
+              <div className="wrapperIcons">
+                <div className="TextDesckCofe3">
+                  <h1 className="OneHundret">100%</h1>
+                  <p className="PowerFullText3">aрабіка</p>
+                </div>
+                <span className="wrapperBsFlower12">
+                  <SiCoffeescript size={35} fill="#482809" />
+                </span>
+              </div>
+            </div>
+            <div className="TasteSection">
+              <div className="wrapperIcons">
+                <div className="TextDesckCofe">
+                  <h4 className="OneHundret3">Походження</h4>
+                  <p className="PowerFullText3">Латинська Америка</p>
+                </div>
+              </div>
+            </div>
+            <div className="TasteSection">
+              <div className="wrapperIcons">
+                <div className="TextDesckCofe">
+                  <h4 className="OneHundret3">Виробника</h4>
+                  <p className="PowerFullText3">Італія</p>
+                </div>
+              </div>
+            </div>
+          </section>
         </section>
+
+        <section className="BuyBlock">
+          <div className="PromoBuy">
+            <p className="Order">
+              Замовити можете через кнопку "купити" або за номером телефону 096
+              777 33 55 вайбер, телеграм.{" "}
+            </p>
+            <a className="AddToUs">
+              Приєднуйтесь до нас у соціальних мережах: {" "}
+            </a>
+            <div className="IconSrapper">
+              <span className="Span">
+                <a href="https://www.instagram.com" target="_blank">
+                  <Image
+                    className="Instagram"
+                    alt="Ins"
+                    src={Insta}
+                    width={50}
+                    height={50}
+                  />
+                </a>
+              </span>
+              <span className="Span">
+                <a href="https://www.facebook.com" target="_blank">
+                  <Image
+                    className="Instagram"
+                    alt="Ins"
+                    src={FaceBook}
+                    width={47}
+                    height={47}
+                  />
+                </a>
+              </span>
+            </div>
+          </div>
+        </section>
+        <Elcofe />
       </div>
 
       <div className="wrapperFootter">

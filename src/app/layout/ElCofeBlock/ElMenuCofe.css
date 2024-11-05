@@ -44,6 +44,8 @@ div {
 }
 
 .hiddenText {
+  float: left;
+  display: flex;
   color: black;
   top: 50%;
   height: 100%;
@@ -137,4 +139,10 @@ div {
 .wrapperPhotoBack:hover .hiddenText {
   opacity: 1; /* Показуємо текст при наведенні */
   cursor: pointer;
+}
+
+.ElCofeflavor {
+  display: flex;
+  flex-direction: column;
+  float: left;
 }

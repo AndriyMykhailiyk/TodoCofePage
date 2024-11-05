@@ -78,7 +78,6 @@
   font-weight: 500;
 }
 
-
 a.primary {
   background: var(--foreground);
   color: var(--background);
@@ -211,7 +210,6 @@ a.secondary {
   cursor: pointer;
 }
 
-
 .ByCofe:hover {
   cursor: pointer;
   font-style: normal;
@@ -240,6 +238,7 @@ a.secondary {
 }
 
 .SocBlock {
+  flex-direction: column;
   display: flex;
   align-items: center;
 }
@@ -304,4 +303,7 @@ a.secondary {
 }
 .a {
   font-style: normal;
+}
+.wrapperTel {
+  padding-top: 1em;
 }

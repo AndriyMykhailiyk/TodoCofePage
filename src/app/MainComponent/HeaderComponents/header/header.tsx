@@ -15,9 +15,7 @@ const Header = () => {
             <ul className={styles.Ul}>
               <li className={styles.ByCofe}>
                 <Link href="/cofe" className={styles.ByCofe}>
-                  <button className={styles.ByCofeLink}>
-                  Придбати каву
-                  </button>
+                  <button className={styles.ByCofeLink}>Придбати каву</button>
                 </Link>
               </li>
             </ul>
@@ -67,6 +65,9 @@ const Header = () => {
                 </li>
               </ul>
             </nav>
+            <div className={styles.wrapperTel}>
+              <a href="tel:+6494461709">+380 (73) 524-11-06</a>
+            </div>
           </div>
         </section>
       </section>

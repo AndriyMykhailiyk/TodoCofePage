@@ -5,6 +5,14 @@ const Menu = () => {
   const [Acivemenu, setAcivemenu] = useState(true);
   const [DrinksMenu, setDrinksMenu] = useState(false);
   const [Takeaway, setTakeaway] = useState(false);
+  const [Contacts, setContacts] = useState(false);
+
+  const HandleActiveContacts = () => {
+    setAcivemenu(false);
+    setDrinksMenu(false);
+    setTakeaway(false);
+    setContacts(true);
+  };
 
   const HandleActuveMenu = () => {
     setAcivemenu(true);
@@ -67,6 +75,20 @@ const Menu = () => {
               onClick={HandleTakeaway}
             >
               Takeaway Menu
+            </button>
+            <button
+              className={Contacts ? "SubBtnActive" : "SubBtn"}
+              id="BtnTakeawayId"
+              onClick={HandleActiveContacts}
+            >
+              Контакти
+            </button>
+            <button
+              className="SubBtn"
+              id="BtnTakeawayId"
+              onClick={HandleTakeaway}
+            >
+              Про нас
             </button>
           </div>
         </section>
@@ -204,6 +226,128 @@ const Menu = () => {
               </div>
             </main>
           </section>
+        ) : Contacts ? (
+          <section className="DrinksMenu">
+            <main>
+              <div className="listMenu">
+                <h1 className="LateCaffe">CONTACTS MENU</h1>
+              </div>
+
+              <div className="Drinks">
+                <h1 className="DrinksTitle">Компанія</h1>
+                <ul className="Ul-Drinks">
+                  <li className="li-drink-menu">
+                    <h3>Coffe Late for Top</h3>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3></h3>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3></h3>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Телефон</h3>
+                  </li>
+                </ul>
+              </div>
+              <div className="Cocktails">
+                <h1 className="DrinksTitle">Контактна особа</h1>
+                <ul className="Ul-Drinks">
+                  <li className="li-drink-menu">
+                    <h3>Whiskey Sour</h3>
+                    <p>Bourbon, Lemon Juice, Simple Syrup, Egg White</p>
+                    <a>$14</a>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Pina Colada</h3>
+                    <p>Rum, Pineapple Juice, Coconut Cream</p>
+                    <a>$13</a>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Aperol Spritz</h3>
+                    <p>Aperol, Prosecco, Soda Water</p>
+                    <a>$11</a>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Espresso Martini</h3>
+                    <p>Vodka, Espresso, Coffee Liqueur</p>
+                    <a>$15</a>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Negroni</h3>
+                    <p>Gin, Campari, Sweet Vermouth</p>
+                    <a>$16</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="Main">
+                <h1 className="DrinksTitle">Адреса</h1>
+                <ul className="Ul-Drinks">
+                  <li className="li-drink-menu">
+                    <h3>New York Whiskey Sour</h3>
+                    <p>Bourbon, Lemon Juice, Simple Syrup, Egg White</p>
+                    <a>$16</a>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Fig and Rosemary Spritz</h3>
+                    <p>Fig Infusion, Rosemary Syrup, Prosecco, Soda</p>
+                    <a>$14</a>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Sea Breeze Cocktail</h3>
+                    <p>
+                      Vodka, Cranberry Juice, Grapefruit Juice,
+                      <br /> Fresh Lime
+                    </p>
+                    <a>$13</a>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Smoked Chicken Bourbon</h3>
+                    <p>Bourbon, Smoked Tea, Lemon, Honey</p>
+                    <a>$18</a>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Beefy Bloody Mary</h3>
+                    <p>Vodka, Tomato Juice, Spices, Beef Stock</p>
+                    <a>$20</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="Main">
+                <h1 className="DrinksTitle">Адреса</h1>
+                <ul className="Ul-Drinks">
+                  <li className="li-drink-menu">
+                    <h3>New York Whiskey Sour</h3>
+                    <p>Bourbon, Lemon Juice, Simple Syrup, Egg White</p>
+                    <a>$16</a>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Fig and Rosemary Spritz</h3>
+                    <p>Fig Infusion, Rosemary Syrup, Prosecco, Soda</p>
+                    <a>$14</a>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Sea Breeze Cocktail</h3>
+                    <p>
+                      Vodka, Cranberry Juice, Grapefruit Juice,
+                      <br /> Fresh Lime
+                    </p>
+                    <a>$13</a>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Smoked Chicken Bourbon</h3>
+                    <p>Bourbon, Smoked Tea, Lemon, Honey</p>
+                    <a>$18</a>
+                  </li>
+                  <li className="li-drink-menu">
+                    <h3>Beefy Bloody Mary</h3>
+                    <p>Vodka, Tomato Juice, Spices, Beef Stock</p>
+                    <a>$20</a>
+                  </li>
+                </ul>
+              </div>
+            </main>
+          </section>
         ) : (
           <section className="DrinksMenu">
             <main>
@@ -267,7 +411,7 @@ const Menu = () => {
                 </ul>
               </div>
               <div className="Main">
-                <h1 className="DrinksTitle">Signature Drinks</h1>
+                <h1 className="DrinksTitle">Телефон</h1>
                 <ul className="Ul-Drinks">
                   <li className="li-drink-menu">
                     <h3>New York Whiskey Sour</h3>

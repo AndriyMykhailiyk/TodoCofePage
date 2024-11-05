@@ -19,7 +19,8 @@ import { IoMdCheckmark } from "react-icons/io";
 import Elcofe from "../../../app/layout/ElCofeBlock/ElcofeBlock";
 import { Box, Snackbar, Alert, Rating } from "@mui/material";
 import useCountCofe from "@/app/store/countCofe";
-
+import Insta from "./SvgIcon/pngwing.com (4).png";
+import FaceBook from "./SvgIcon/pngwing.com (5).png";
 interface CoffeeOrder {
   id: number;
   name: string;
@@ -295,6 +296,40 @@ const CoffeeDetail = () => {
             </div>
           </div>
         </section>
+      </section>
+
+      <section className="BuyBlock">
+        <div className="PromoBuy">
+          <p className="Order">
+            Замовити можете через кнопку "купити" або за номером телефону 096
+            777 33 55 вайбер, телеграм.{" "}
+          </p>
+          <a className="AddToUs">Приєднуйтесь до нас у соціальних мережах:  </a>
+          <div className="IconSrapper">
+            <span className="Span">
+              <a href="https://www.instagram.com" target="_blank">
+                <Image
+                  className="Instagram"
+                  alt="Ins"
+                  src={Insta}
+                  width={50}
+                  height={50}
+                />
+              </a>
+            </span>
+            <span className="Span">
+              <a href="https://www.facebook.com" target="_blank">
+                <Image
+                  className="Instagram"
+                  alt="Ins"
+                  src={FaceBook}
+                  width={47}
+                  height={47}
+                />
+              </a>
+            </span>
+          </div>
+        </div>
       </section>
       <Elcofe />
       <Snackbar

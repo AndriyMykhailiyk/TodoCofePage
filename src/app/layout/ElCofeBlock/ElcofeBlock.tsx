@@ -25,7 +25,12 @@ const Elcofe = () => {
                     />
                   </div>
                   <div className="hiddenText">
-                    {i.paste} {/* Показуємо інгредієнти */}
+                    {i.paste.split(", ").map((flavor, index) => (
+                      <span key={index} className="ElCofeflavor">
+                        {flavor}
+                        <br />
+                      </span>
+                    ))}
                   </div>
                 </div>
                 <div className="TextBlockEl">
