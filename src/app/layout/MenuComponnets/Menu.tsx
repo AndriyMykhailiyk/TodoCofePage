@@ -1,6 +1,16 @@
 "use client";
 import "./Menu.css";
 import { useState } from "react";
+import { CiCoffeeCup } from "react-icons/ci";
+import { MdPerson } from "react-icons/md";
+import { IoLocation } from "react-icons/io5";
+import { FaPhoneFlip } from "react-icons/fa6";
+import { SiWebmoney } from "react-icons/si";
+import { IoIosMail } from "react-icons/io";
+import { SiTelegram } from "react-icons/si";
+import { FaViber } from "react-icons/fa";
+import { IoLogoWhatsapp } from "react-icons/io";
+
 const Menu = () => {
   const [Acivemenu, setAcivemenu] = useState(true);
   const [DrinksMenu, setDrinksMenu] = useState(false);
@@ -234,115 +244,75 @@ const Menu = () => {
               </div>
 
               <div className="Drinks">
-                <h1 className="DrinksTitle">Компанія</h1>
+                <h1 className="DrinksTitle">КОМПАНІЯ</h1>
                 <ul className="Ul-Drinks">
                   <li className="li-drink-menu">
-                    <h3>Coffe Late for Top</h3>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3></h3>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3></h3>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3>Телефон</h3>
+                    <CiCoffeeCup size={28} />
+                    <span>Coffe Late for Top</span>
                   </li>
                 </ul>
               </div>
-              <div className="Cocktails">
-                <h1 className="DrinksTitle">Контактна особа</h1>
+              <div className="Drinks">
+                <h1 className="DrinksTitle">КОНТАКТНА ІНФОРМАЦІЯ</h1>
                 <ul className="Ul-Drinks">
                   <li className="li-drink-menu">
-                    <h3>Whiskey Sour</h3>
-                    <p>Bourbon, Lemon Juice, Simple Syrup, Egg White</p>
-                    <a>$14</a>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3>Pina Colada</h3>
-                    <p>Rum, Pineapple Juice, Coconut Cream</p>
-                    <a>$13</a>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3>Aperol Spritz</h3>
-                    <p>Aperol, Prosecco, Soda Water</p>
-                    <a>$11</a>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3>Espresso Martini</h3>
-                    <p>Vodka, Espresso, Coffee Liqueur</p>
-                    <a>$15</a>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3>Negroni</h3>
-                    <p>Gin, Campari, Sweet Vermouth</p>
-                    <a>$16</a>
+                    <MdPerson size={23} />
+                    <span>Роман</span>
                   </li>
                 </ul>
               </div>
-              <div className="Main">
-                <h1 className="DrinksTitle">Адреса</h1>
+              <div className="Drinks">
+                <h1 className="DrinksTitle">АДРЕСА</h1>
                 <ul className="Ul-Drinks">
                   <li className="li-drink-menu">
-                    <h3>New York Whiskey Sour</h3>
-                    <p>Bourbon, Lemon Juice, Simple Syrup, Egg White</p>
-                    <a>$16</a>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3>Fig and Rosemary Spritz</h3>
-                    <p>Fig Infusion, Rosemary Syrup, Prosecco, Soda</p>
-                    <a>$14</a>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3>Sea Breeze Cocktail</h3>
-                    <p>
-                      Vodka, Cranberry Juice, Grapefruit Juice,
-                      <br /> Fresh Lime
-                    </p>
-                    <a>$13</a>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3>Smoked Chicken Bourbon</h3>
-                    <p>Bourbon, Smoked Tea, Lemon, Honey</p>
-                    <a>$18</a>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3>Beefy Bloody Mary</h3>
-                    <p>Vodka, Tomato Juice, Spices, Beef Stock</p>
-                    <a>$20</a>
+                    <IoLocation size={23} />
+                    <span>вул. Володимира Стельмаха, 18е, Рівне, Україна</span>
                   </li>
                 </ul>
               </div>
-              <div className="Main">
-                <h1 className="DrinksTitle">Адреса</h1>
+              <div className="Drinks">
+                <h1 className="DrinksTitle">ТЕЛЕФОН</h1>
                 <ul className="Ul-Drinks">
                   <li className="li-drink-menu">
-                    <h3>New York Whiskey Sour</h3>
-                    <p>Bourbon, Lemon Juice, Simple Syrup, Egg White</p>
-                    <a>$16</a>
+                    <FaPhoneFlip size={17} />
+                    <span>+380 (73) 524-11-06</span>
                   </li>
+                </ul>
+              </div>
+              <div className="Drinks">
+                <h1 className="DrinksTitle">ДОДАТКОВІ ВИДИ ЗВ'ЯЗКУ</h1>
+                <ul className="Ul-Drinks">
                   <li className="li-drink-menu">
-                    <h3>Fig and Rosemary Spritz</h3>
-                    <p>Fig Infusion, Rosemary Syrup, Prosecco, Soda</p>
-                    <a>$14</a>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3>Sea Breeze Cocktail</h3>
-                    <p>
-                      Vodka, Cranberry Juice, Grapefruit Juice,
-                      <br /> Fresh Lime
-                    </p>
-                    <a>$13</a>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3>Smoked Chicken Bourbon</h3>
-                    <p>Bourbon, Smoked Tea, Lemon, Honey</p>
-                    <a>$18</a>
-                  </li>
-                  <li className="li-drink-menu">
-                    <h3>Beefy Bloody Mary</h3>
-                    <p>Vodka, Tomato Juice, Spices, Beef Stock</p>
-                    <a>$20</a>
+                    <span className="WrapperOnWwrapper">
+                      <div className="WraperSocMedia">
+                        <SiWebmoney size={14} />
+                        <a className="Link12">equador-coffee.com.ua</a>
+                      </div>
+                    </span>
+                    <span className="WrapperOnWwrapper">
+                      <div className="WraperSocMedia">
+                        <IoIosMail size={14} />
+                        <a className="Link12">equadorcoffee@gmail.com</a>
+                      </div>
+                    </span>
+                    <span className="WrapperOnWwrapper">
+                      <div className="WraperSocMedia">
+                        <SiTelegram size={14} fill="#2AABEE" />
+                        <a className="Link123">+380 (96) 777 33 55</a>
+                      </div>
+                    </span>{" "}
+                    <span className="WrapperOnWwrapper">
+                      <div className="WraperSocMedia">
+                        <FaViber size={14} fill="#7360F2" />
+                        <a className="Link123">+380 (96) 777 33 55</a>
+                      </div>
+                    </span>{" "}
+                    <span className="WrapperOnWwrapper">
+                      <div className="WraperSocMedia">
+                        <IoLogoWhatsapp size={14} fill="#25D366" />
+                        <a className="Link123">+380 (96) 777 33 55</a>
+                      </div>
+                    </span>
                   </li>
                 </ul>
               </div>

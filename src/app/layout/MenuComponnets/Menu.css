@@ -160,13 +160,18 @@ main {
 }
 
 .li-drink-menu {
+  flex-direction: column;
+  gap: 5px;
   list-style-type: none;
   padding-bottom: 2em;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+.CiCoffeeCup2 {
+  padding-right: 1em;
+}
+
 .li-takeout-menu {
   list-style-type: none;
   padding-bottom: 2em;
@@ -190,5 +195,20 @@ a {
 .Drinks,
 .Cocktails,
 .Takeout {
-  padding-bottom: 4em;
+  padding-bottom: 2em;
+}
+.Link12 {
+  font-size: 14px;
+  font-style: normal;
+  text-decoration: underline;
+}
+.Link123 {
+  font-size: 14px;
+  font-style: normal;
+}
+
+.WraperSocMedia {
+  align-items: center;
+  display: flex;
+  gap: 5px;
 }

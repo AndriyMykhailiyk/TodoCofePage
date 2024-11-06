@@ -228,7 +228,6 @@ a.secondary {
 }
 .Header {
   padding-top: 2em;
-  padding-bottom: 2em;
   justify-content: space-between;
   display: flex;
 }
