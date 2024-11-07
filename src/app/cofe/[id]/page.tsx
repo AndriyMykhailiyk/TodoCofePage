@@ -58,20 +58,26 @@ const CoffeeDetail = () => {
   };
 
   useEffect(() => {
-    const savedCountCofe = localStorage.getItem("countCofe");
-    if (savedCountCofe) {
-      setAddOrderOrder(parseInt(savedCountCofe, 10));
+    if (typeof window !== "undefined") {
+      const savedCountCofe = localStorage.getItem("countCofe");
+      if (savedCountCofe) {
+        setAddOrderOrder(parseInt(savedCountCofe, 10));
+      }
     }
   }, [setAddOrderOrder]);
 
   useEffect(() => {
-    localStorage.setItem("countCofe", countCofe.toString());
+    if (typeof window !== "undefined") {
+      localStorage.setItem("countCofe", countCofe.toString());
+    }
   }, [countCofe]);
 
   useEffect(() => {
-    const savedCoffeeOrders = localStorage.getItem("CoffeeOrders");
-    if (savedCoffeeOrders) {
-      setCoffeeOrders(JSON.parse(savedCoffeeOrders));
+    if (typeof window !== "undefined") {
+      const savedCoffeeOrders = localStorage.getItem("CoffeeOrders");
+      if (savedCoffeeOrders) {
+        setCoffeeOrders(JSON.parse(savedCoffeeOrders));
+      }
     }
   }, []);
 
@@ -89,34 +95,34 @@ const CoffeeDetail = () => {
   }
 
   const HandleKlickBtn = () => {
-    if (!coffee) return;
+    if (typeof window !== "undefined" && coffee) {
+      const coffeeOrder: CoffeeOrder = {
+        id: coffee.id,
+        name: coffee.name,
+        price: coffee.price,
+        img: typeof coffee.img === "string" ? coffee.img : coffee.img.src,
+        type: coffee.type,
+        paste: coffee.paste,
+      };
 
-    const coffeeOrder: CoffeeOrder = {
-      id: coffee.id,
-      name: coffee.name,
-      price: coffee.price,
-      img: typeof coffee.img === "string" ? coffee.img : coffee.img.src,
-      type: coffee.type,
-      paste: coffee.paste,
-    };
+      if (isAdded) {
+        const updatedOrders = coffeeOrders.filter(
+          (order) => order.id !== coffeeOrder.id
+        );
+        setCoffeeOrders(updatedOrders);
+        localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
+        SetisAdded(false);
+        setSnackbarMessage("Товар видалено з корзини");
+      } else {
+        const updatedOrders = [...coffeeOrders, coffeeOrder];
+        setCoffeeOrders(updatedOrders);
+        localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
+        SetisAdded(true);
+        setSnackbarMessage("Товар додано до корзини");
+      }
 
-    if (isAdded) {
-      const updatedOrders = coffeeOrders.filter(
-        (order) => order.id !== coffeeOrder.id
-      );
-      setCoffeeOrders(updatedOrders);
-      localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
-      SetisAdded(false);
-      setSnackbarMessage("Товар видалено з корзини");
-    } else {
-      const updatedOrders = [...coffeeOrders, coffeeOrder];
-      setCoffeeOrders(updatedOrders);
-      localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
-      SetisAdded(true);
-      setSnackbarMessage("Товар додано до корзини");
+      setSnackbarOpen(true);
     }
-
-    setSnackbarOpen(true);
   };
 
   const handleDiskountSubmit = (code: string) => {
