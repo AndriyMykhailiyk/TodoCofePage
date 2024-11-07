@@ -28,17 +28,21 @@ const Menu = () => {
     setAcivemenu(true);
     setDrinksMenu(false);
     setTakeaway(false);
+    setContacts(false);
   };
 
   const HandleDrinksMenu = () => {
     setDrinksMenu(true);
     setAcivemenu(false);
     setTakeaway(false);
+    setContacts(false);
   };
 
   const HandleTakeaway = () => {
     setTakeaway(true);
     setDrinksMenu(false);
+    setContacts(false);
+
     setAcivemenu(false);
   };
 
@@ -280,7 +284,7 @@ const Menu = () => {
                 </ul>
               </div>
               <div className="Drinks">
-                <h1 className="DrinksTitle">ДОДАТКОВІ ВИДИ ЗВ'ЯЗКУ</h1>
+                <h1 className="DrinksTitle">ДОДАТКОВІ ВИДИ ЗВ&apos;ЯЗКУ</h1>
                 <ul className="Ul-Drinks">
                   <li className="li-drink-menu">
                     <span className="WrapperOnWwrapper">

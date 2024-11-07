@@ -20,7 +20,6 @@ import { GiCherry } from "react-icons/gi";
 import { BsFlower1 } from "react-icons/bs";
 import { PiCoffeeBean } from "react-icons/pi";
 import { SiCoffeescript } from "react-icons/si";
-import { IoMdCheckmark } from "react-icons/io";
 import { FaRaspberryPi } from "react-icons/fa6";
 import Elcofe from "../layout/ElCofeBlock/ElcofeBlock";
 import Insta from "../cofe/[id]/SvgIcon/pngwing.com (4).png";
@@ -397,8 +396,8 @@ export default function OrderCofe() {
         <section className="BuyBlock">
           <div className="PromoBuy">
             <p className="Order">
-              Замовити можете через кнопку "купити" або за номером телефону 096
-              777 33 55 вайбер, телеграм.{" "}
+              Замовити можете через кнопку &quot;купити&quot; або за номером
+              телефону 096 777 33 55 вайбер, телеграм.{" "}
             </p>
             <a className="AddToUs">
               Приєднуйтесь до нас у соціальних мережах: {" "}

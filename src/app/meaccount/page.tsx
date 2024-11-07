@@ -26,8 +26,8 @@ export default function MeCofeAccount() {
   const [isBlockVisible, setBlockVisible] = useState(true);
   const [coffeeOrders, setCoffeeOrders] = useState<CoffeeOrder[]>([]);
   const router = useRouter(); // Ініціалізація useRouter
-  const [snackbarMessage, setSnackbarMessage] = useState("");
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [, setSnackbarMessage] = useState("");
+  const [, setSnackbarOpen] = useState(false);
 
   useEffect(() => {
     const savedVisibility = localStorage.getItem("isButtonVisible");

@@ -301,8 +301,8 @@ const CoffeeDetail = () => {
       <section className="BuyBlock">
         <div className="PromoBuy">
           <p className="Order">
-            Замовити можете через кнопку "купити" або за номером телефону 096
-            777 33 55 вайбер, телеграм.{" "}
+            Замовити можете через кнопку &quot;купити&quot; або за номером
+            телефону 096 777 33 55 вайбер, телеграм.{" "}
           </p>
           <a className="AddToUs">Приєднуйтесь до нас у соціальних мережах:  </a>
           <div className="IconSrapper">
