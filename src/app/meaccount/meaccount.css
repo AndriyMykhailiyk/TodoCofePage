@@ -48,6 +48,21 @@
   font-size: 0.9375rem;
   line-height: 1.21875rem;
 }
+.valueName:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: 1.1375rem;
+  line-height: 1.21875rem;
+}
+
+.valueName,
+.valuetype {
+  padding-bottom: 1em;
+  font-weight: 600;
+  font-size: 1.1375rem;
+  line-height: 1.21875rem;
+}
 
 .WrapperSec {
   display: flex;
@@ -60,6 +75,111 @@
 }
 .TextAboutCofePage {
   margin-right: 10px;
+  min-width: 362px;
   display: grid;
   align-content: space-between;
+}
+header {
+  color: black;
+}
+.FormTitle {
+  color: black;
+}
+.NameWrapper {
+  margin: 2em 0em;
+}
+
+.BusKet {
+  width: 500px;
+}
+.InputBlock {
+  border: transparent;
+  background-color: #e4e4e7;
+  border-radius: 8px;
+  padding: 0.7em 1.2em;
+  margin-top: 10px;
+}
+.Layoutblock {
+  margin-bottom: 10px;
+}
+
+.BuyBtn {
+  box-shadow: transparent;
+  background-color: red;
+  font-size: 16px;
+  border-radius: 7px;
+  padding: 0.7em 2em;
+}
+
+.BusketHeader {
+  padding: 0.5em 1em;
+  line-height: 22px;
+  font-size: 26px;
+}
+.HeaderText {
+  background-color: #f7f8fa;
+}
+.ContactsData {
+  color: black;
+  font-size: 16px;
+}
+
+main {
+  padding: 0.5em 1.7em;
+}
+
+.BuySecOrder {
+  padding: 0.5em 1.7em;
+}
+.Star {
+  color: red;
+}
+
+.counter_game {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+.quantityCofe {
+  padding: 0;
+  display: inline;
+  margin-right: 40px;
+}
+.WrapperControlBtn {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.WrapperBlockCounter {
+  padding: 0.4em 0.8em;
+  border-radius: 13px;
+  border: 1px solid black;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+}
+.add,
+.minus {
+  cursor: pointer;
+}
+.value {
+  font-size: 20px;
+}
+.WrapperGoTrash {
+  cursor: pointer;
+}
+.Prash:hover {
+  color: red;
+}
+.TotalPrice {
+  color: black;
+  font-weight: 600;
+  font-size: 22px;
+}
+.PriceBlock {
+  padding-top: 2em;
+  color: black;
+}
+.Almostgenerally {
+  padding-bottom: 10px;
 }

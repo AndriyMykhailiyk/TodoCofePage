@@ -191,7 +191,12 @@
 }
 
 .basketCount {
-  color: black;
+  position: absolute;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 50px;
+  background-color: red;
+  color: white;
 }
 .PromoBuy {
   display: flex;
@@ -220,4 +225,9 @@
 }
 .Instagram {
   cursor: pointer;
+}
+
+.breadcrumb {
+  padding-top: 3em;
+  padding-left: 7em;
 }

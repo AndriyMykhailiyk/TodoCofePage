@@ -7,7 +7,14 @@ import Image from "next/image";
 import { useRouter } from "next/navigation"; // Імпорт useRouter
 import "./meaccount.css";
 import PhotoMeCofe from "./cofephoto/kawa_BEANS.png";
-
+import { MdOutlineArrowDropUp } from "react-icons/md";
+import { MdOutlineArrowDropDown } from "react-icons/md";
+import Footer from "../MainComponent/footer/Footer";
+import "../MainComponent/footer/Footer.css";
+import { IoIosArrowRoundBack } from "react-icons/io";
+import Link from "next/link";
+import { IoBasketOutline } from "react-icons/io5";
+import Header from "../cofe/headercofe/header";
 interface CoffeeOrder {
   id: number;
   name: string;
@@ -15,7 +22,9 @@ interface CoffeeOrder {
   img: string;
   type: string;
   paste: string;
+  quantity: number;
 }
+
 export default function MeCofeAccount() {
   const DarkChoko = useTypeCofe((state) => state.DarkChoko);
   const Cofeinnn = useTypeCofe((state) => state.Cofeinnn);
@@ -37,7 +46,13 @@ export default function MeCofeAccount() {
 
     const savedCoffeeOrders = localStorage.getItem("CoffeeOrders");
     if (savedCoffeeOrders) {
-      setCoffeeOrders(JSON.parse(savedCoffeeOrders));
+      const parsedOrders = JSON.parse(savedCoffeeOrders).map(
+        (order: { quantity: number }) => ({
+          ...order,
+          quantity: order.quantity || 1, // встановлюємо quantity за замовчуванням, якщо його немає
+        })
+      );
+      setCoffeeOrders(parsedOrders);
     }
   }, []);
 
@@ -104,8 +119,35 @@ export default function MeCofeAccount() {
 
   if (!isBlockVisible) return null;
 
+  const handleIncrement = (orderId: number) => {
+    setCoffeeOrders((prevOrders) =>
+      prevOrders.map((order) =>
+        order.id === orderId
+          ? { ...order, quantity: (order.quantity || 0) + 1 }
+          : order
+      )
+    );
+  };
+
+  const handleDecrement = (orderId: number) => {
+    setCoffeeOrders((prevOrders) =>
+      prevOrders.map((order) =>
+        order.id === orderId && (order.quantity || 0) > 1
+          ? { ...order, quantity: (order.quantity || 0) - 1 }
+          : order
+      )
+    );
+  };
+
+  const totalPrice = coffeeOrders.reduce(
+    (total, order) => total + (order.price || 0) * (order.quantity || 0),
+    0
+  );
+
   return (
     <div className="wrapperFullBlock">
+      <Header />
+
       <div className="LeftSidePhotoCofe">
         <div className="wrapperLeftSidePhotoCofe"></div>
       </div>
@@ -168,23 +210,146 @@ export default function MeCofeAccount() {
 
                 <div className="TextAboutCofePage">
                   <div className="wrapperText">
-                    <h6 className="HeaderTxt">Замовлення кави</h6>
-                    <p className="value">{order.name}</p>
-                    <p className="value">{order.type}</p>
+                    <a
+                      className="valueName"
+                      href={`/cofe/${order.id}`}
+                      target="_blank"
+                    >
+                      {order.name}
+                    </a>
+                    <p className="valuetype">{order.type}</p>
                     <p className="value">{order.paste}</p>
                   </div>
-                  <button
-                    onClick={() => handleRemoveOrder(order.id)}
-                    className="NexPageBtn2"
-                  >
-                    Видалити
-                  </button>
+                  <section className="counter_game">
+                    <div className="WrapperBlockCounter">
+                      <p className="quantityCofe">{order.quantity || 0}</p>
+                      <div className="WrapperControlBtn">
+                        <MdOutlineArrowDropUp
+                          onClick={() => handleIncrement(order.id)}
+                          className="add"
+                        />
+
+                        <MdOutlineArrowDropDown
+                          onClick={() => handleDecrement(order.id)}
+                          className="minus"
+                        />
+                      </div>
+                    </div>
+                    <div className="PriceElCofe">
+                      <p className="value">₴{order.price}</p>
+                    </div>
+                    <div className="WrapperGoTrash">
+                      <GoTrash
+                        onClick={() => handleRemoveOrder(order.id)}
+                        width={80}
+                        size={20}
+                        height={65}
+                        className="Prash"
+                      />
+                    </div>
+                  </section>
                 </div>
               </div>
             ))}
           </div>
         </section>
       </div>
+      <section className="BusKet">
+        <header className="HeaderText">
+          <p className="BusketHeader">Кошик</p>
+        </header>
+        <main>
+          <p className="ContactsData">Контактні дані</p>
+          <section className="InputSection">
+            <div className="NameWrapper">
+              <span className="Layoutblock">
+                <div className="FormTitle">
+                  <span>Iмя</span>
+                  <span className="Star">*</span>
+                </div>
+
+                <input placeholder="Iмя" className="InputBlock" type="name" />
+              </span>
+            </div>
+            <div className="NameWrapper">
+              {" "}
+              <span className="Layoutblock">
+                <div className="FormTitle">
+                  <span>Прізвище</span>
+                  <span>*</span>
+                </div>
+
+                <input
+                  placeholder="Прізвище"
+                  className="InputBlock"
+                  type="lastName"
+                />
+              </span>
+            </div>
+            <div className="NameWrapper">
+              {" "}
+              <span className="Layoutblock">
+                <div className="FormTitle">
+                  <span>Email</span>
+                  <span>*</span>
+                </div>
+
+                <input
+                  placeholder="Email"
+                  className="InputBlock"
+                  type="email"
+                />
+              </span>
+            </div>
+            <div className="NameWrapper">
+              {" "}
+              <span className="Layoutblock">
+                <div className="FormTitle">
+                  <span>Мобільний</span>
+                  <span>*</span>
+                </div>
+                <input
+                  placeholder="Мобільний"
+                  className="InputBlock"
+                  type="mobile"
+                />
+              </span>
+            </div>
+            <div className="NameWrapper">
+              {" "}
+              <span className="Layoutblock">
+                <div className="FormTitle">
+                  <span>Коментар</span>
+                  <span>*</span>
+                </div>
+
+                <input
+                  placeholder="Коментар"
+                  className="InputBlock"
+                  type="Comment"
+                />
+              </span>
+            </div>
+          </section>
+        </main>
+        <section className="BuySecOrder">
+          <button className="BuyBtn">Купити</button>
+          <div className="PriceBlock">
+            <p className="Almostgenerally">
+              <span className="SpanAlmostgenerally">
+                Майже загально: ${totalPrice.toFixed(2)}
+              </span>
+            </p>
+            <p className="Almostgenerally">
+              <span className="SpanAlmostgenerally">
+                Вартість доставки: $0.00
+              </span>
+            </p>
+          </div>
+          <p className="TotalPrice">Загальна ціна: ${totalPrice.toFixed(2)}</p>
+        </section>
+      </section>
+      <Footer />
     </div>
   );
 }

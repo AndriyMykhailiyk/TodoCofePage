@@ -16,9 +16,33 @@ const Menu = () => {
   const [DrinksMenu, setDrinksMenu] = useState(false);
   const [Takeaway, setTakeaway] = useState(false);
   const [Contacts, setContacts] = useState(false);
+  const [Writetous, setwritetous] = useState(false);
+
+  const [values, setValues] = useState({
+    name1: "",
+    name2: "",
+    name3: "",
+    name4: "",
+  });
+  const [errors, setErrors] = useState({
+    name1: "",
+    name2: "",
+    name3: "",
+    name4: "",
+  });
+
+  const Handlewritetous = () => {
+    setAcivemenu(false);
+    setwritetous(true);
+    setDrinksMenu(false);
+    setTakeaway(false);
+    setContacts(false);
+  };
 
   const HandleActiveContacts = () => {
     setAcivemenu(false);
+    setwritetous(false);
+
     setDrinksMenu(false);
     setTakeaway(false);
     setContacts(true);
@@ -28,6 +52,8 @@ const Menu = () => {
     setAcivemenu(true);
     setDrinksMenu(false);
     setTakeaway(false);
+    setwritetous(false);
+
     setContacts(false);
   };
 
@@ -36,14 +62,55 @@ const Menu = () => {
     setAcivemenu(false);
     setTakeaway(false);
     setContacts(false);
+    setwritetous(false);
   };
 
   const HandleTakeaway = () => {
     setTakeaway(true);
     setDrinksMenu(false);
     setContacts(false);
+    setwritetous(false);
 
     setAcivemenu(false);
+  };
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+
+    // Видаляємо повідомлення про помилку, якщо значення не порожнє
+    if (value.trim() !== "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: "",
+      }));
+    }
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    let newErrors: any = {};
+    let hasError = false;
+
+    // Перевірка, чи є поля порожніми, і встановлення повідомлення про помилку
+    Object.entries(values).forEach(([key, value]) => {
+      if (value.trim() === "") {
+        newErrors[key] = "Це поле є обов'язковим";
+        hasError = true;
+      }
+    });
+
+    setErrors(newErrors);
+
+    if (!hasError) {
+      console.log("Form submitted:", values);
+      setValues({ name1: "", name2: "", name3: "", name4: "" });
+    }
   };
 
   return (
@@ -58,9 +125,8 @@ const Menu = () => {
 
               <div className="descriprion">
                 <h2 className="descriprion-text2">
-                  We change our menu every season. <br />
-                  Here is what we are currently
-                  <br /> dishing up.
+                  Кожного сезону ми змінюємо наше меню. <br />
+                  Ось що ми зараз є страва вгору.
                 </h2>
               </div>
             </div>
@@ -98,11 +164,11 @@ const Menu = () => {
               Контакти
             </button>
             <button
-              className="SubBtn"
+              className={Writetous ? "SubBtnActive" : "SubBtn"}
               id="BtnTakeawayId"
-              onClick={HandleTakeaway}
+              onClick={Handlewritetous}
             >
-              Про нас
+              Напишіть нам
             </button>
           </div>
         </section>
@@ -321,6 +387,57 @@ const Menu = () => {
                 </ul>
               </div>
             </main>
+          </section>
+        ) : Writetous ? (
+          <section className="DrinksMenu">
+            <div className="Drinks">
+              <form onSubmit={handleSubmit}>
+                <div
+                  className="Wrapperinput"
+                  style={{ display: "flex", flexDirection: "column" }}
+                >
+                  <input
+                    name="name1"
+                    value={values.name1}
+                    onChange={handleChange}
+                    placeholder="Ваше ім'я"
+                    className="InputTextBlock"
+                  />
+                  {errors.name1 && <p className="error-text">{errors.name1}</p>}
+
+                  <input
+                    name="name2"
+                    value={values.name2}
+                    onChange={handleChange}
+                    placeholder="Телефон"
+                    className="InputTextBlock"
+                  />
+                  {errors.name2 && <p className="error-text">{errors.name2}</p>}
+
+                  <input
+                    name="name3"
+                    value={values.name3}
+                    onChange={handleChange}
+                    className="InputTextBlock"
+                    placeholder="Ваш email"
+                  />
+                  {errors.name3 && <p className="error-text">{errors.name3}</p>}
+
+                  <input
+                    name="name4"
+                    className="InputTextBlock"
+                    value={values.name4}
+                    onChange={handleChange}
+                    placeholder="Коментар"
+                  />
+                  {errors.name4 && <p className="error-text">{errors.name4}</p>}
+
+                  <button type="submit" className="SendObj">
+                    Відправити
+                  </button>
+                </div>
+              </form>
+            </div>
           </section>
         ) : (
           <section className="DrinksMenu">

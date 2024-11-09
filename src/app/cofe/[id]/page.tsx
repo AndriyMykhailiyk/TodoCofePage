@@ -17,10 +17,18 @@ import { PiCoffeeBean } from "react-icons/pi";
 import { SiCoffeescript } from "react-icons/si";
 import { IoMdCheckmark } from "react-icons/io";
 import Elcofe from "../../../app/layout/ElCofeBlock/ElcofeBlock";
-import { Box, Snackbar, Alert, Rating } from "@mui/material";
+import {
+  Box,
+  Snackbar,
+  Alert,
+  Rating,
+  Breadcrumbs,
+  Typography,
+} from "@mui/material";
 import useCountCofe from "@/app/store/countCofe";
 import Insta from "./SvgIcon/pngwing.com (4).png";
 import FaceBook from "./SvgIcon/pngwing.com (5).png";
+import Footer from "@/app/MainComponent/footer/Footer";
 interface CoffeeOrder {
   id: number;
   name: string;
@@ -140,6 +148,12 @@ const CoffeeDetail = () => {
     }
   };
 
+  const breadcrumbs = [
+    { label: "Головна", href: "/" },
+    { label: "Кава в зернах", href: `/cofe/${params.id}` },
+    { label: coffee.name, href: "" },
+  ];
+
   return (
     <>
       {showDiskount && (
@@ -169,6 +183,28 @@ const CoffeeDetail = () => {
           </Link>
         </div>
       </header>
+      <Breadcrumbs aria-label="breadcrumb" className="breadcrumb">
+        {breadcrumbs.map((item, index) =>
+          index === breadcrumbs.length - 1 ? (
+            <Typography key={item.href} color="textPrimary">
+              {item.label}
+            </Typography>
+          ) : (
+            <Link
+              key={item.href}
+              color="inherit"
+              href={item.href}
+              style={{
+                textDecoration: index < 2 ? "underline" : "none", // Перші два елементи підкреслені завжди
+                textDecorationColor: index < 2 ? "inherit" : "none", // Колір підкреслення
+                textDecorationThickness: index < 2 ? "auto" : "none", // Товщина підкреслення
+              }}
+            >
+              {item.label}
+            </Link>
+          )
+        )}
+      </Breadcrumbs>
       <section className="SectionCofe">
         <div className="coffee-detail">
           <div className="WrapperPhoto">
@@ -212,9 +248,9 @@ const CoffeeDetail = () => {
             <div className="wrapperGet">
               <IoMdCheckmark size={26} fill="#0bc040" />
               <p className="wrapperGetText">В наявності </p>
-              <div className="CofeText">
+              <span className="CofeText">
                 <p className="wrapperGetText3">Код товару: 2442055 </p>
-              </div>
+              </span>
             </div>
 
             <section className="BtnSec9090">
@@ -310,7 +346,7 @@ const CoffeeDetail = () => {
             Замовити можете через кнопку &quot;купити&quot; або за номером
             телефону 096 777 33 55 вайбер, телеграм.{" "}
           </p>
-          <a className="AddToUs">Приєднуйтесь до нас у соціальних мережах:  </a>
+          <a className="AddToUs">Приєднуйтесь до нас у соціальних мережах: </a>
           <div className="IconSrapper">
             <span className="Span">
               <a href="https://www.instagram.com" target="_blank">
@@ -338,6 +374,7 @@ const CoffeeDetail = () => {
         </div>
       </section>
       <Elcofe />
+      <Footer />
       <Snackbar
         open={promoSnackbarOpen}
         autoHideDuration={6000}

@@ -99,9 +99,13 @@
 .DrinksMenu {
   color: black;
   background-color: white;
+  padding: 4em 5em;
+}
+.DrinksMenu2 {
+  color: black;
+  background-color: white;
   padding: 4em 10em;
 }
-
 .LateCaffe {
   font-size: 34px;
   display: flex;
@@ -211,4 +215,38 @@ a {
   align-items: center;
   display: flex;
   gap: 5px;
+}
+
+.Wrapperinput {
+  gap: 20px;
+  display: grid;
+}
+
+.InputTextBlock {
+  border-radius: 8px;
+
+  padding: 1em 10em;
+}
+.SendObj {
+  background-color: transparent;
+  border: 3px solid gray;
+  box-shadow: none;
+  color: #6f6f64;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.7em 11em;
+  font-size: 16px;
+}
+
+.SendObj:hover {
+  background-color: black;
+  box-shadow: none;
+  color: #6f6f64;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.7em 11em;
+  border-color: transparent;
+  font-size: 16px;
 }

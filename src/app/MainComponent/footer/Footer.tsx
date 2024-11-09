@@ -34,40 +34,26 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a className="a-el" href="#Bookings">
-                    Bookings
-                  </a>
-                </li>
-                <li>
                   <a className="a-el" href="#Privacy">
-                    Privacy Policy
+                    Угода користувача
                   </a>
                 </li>
               </ul>
               <ul className="wrapper-ul-fotter">
                 <li>
                   <a className="a-el" href="#Guide">
-                    Style Guide
+                    Магазин
                   </a>
                 </li>
-                <li>
-                  <a className="a-el" href="#Licenses">
-                    Licenses
-                  </a>
-                </li>
-                <li>
-                  <a className="a-el" href="#Instructions">
-                    Instructions
-                  </a>
-                </li>
+
                 <li>
                   <a className="a-el" href="#Changelog">
-                    Changelog
+                    Доставка і оплата замовлення
                   </a>
                 </li>
                 <li>
                   <a className="a-el" href="#Password">
-                    Password
+                    Угода користувача
                   </a>
                 </li>
                 <li>
@@ -89,12 +75,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a className="a-el" href="#Built">
-                    Built by Built by.
-                  </a>
-                </li>
-                <li>
-                  <a className="a-el" href="#Webflow">
-                    Powered by Webflow.
+                    Всі права захищено
                   </a>
                 </li>
               </ul>
