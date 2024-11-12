@@ -15,6 +15,14 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
 import { IoBasketOutline } from "react-icons/io5";
 import Header from "../cofe/headercofe/header";
+import "../ordercofe/order.css";
+import React, { useRef } from "react";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import useCountCofe from "../store/countCofe";
 interface CoffeeOrder {
   id: number;
   name: string;
@@ -37,6 +45,16 @@ export default function MeCofeAccount() {
   const router = useRouter(); // Ініціалізація useRouter
   const [, setSnackbarMessage] = useState("");
   const [, setSnackbarOpen] = useState(false);
+  const countCofe = useCountCofe((state) => state.CountCofe);
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // Встановлюємо фокус на інпуті після рендерингу
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   useEffect(() => {
     const savedVisibility = localStorage.getItem("isButtonVisible");
@@ -146,13 +164,31 @@ export default function MeCofeAccount() {
 
   return (
     <div className="wrapperFullBlock">
-      <Header />
+      <header className="HeaderComponent2">
+        <div className="wrapperHeaderCoffeOreder">
+          <div className="BackBtn2">
+            <span className="wtapperBack">
+              <IoIosArrowRoundBack size={25} />
+              <Link href="/">Назад</Link>
+            </span>
+          </div>
+          <div className="wrapperHeaderText">
+            <Link href="/" className="HeaderText23">
+              LATTE CAFE
+            </Link>
+          </div>
+          <Link href="/meaccount">
+            <IoBasketOutline color="#d27487" size={35} />
+            <span className="basketCount">{countCofe}</span>
+          </Link>
+        </div>
+      </header>
 
       <div className="LeftSidePhotoCofe">
         <div className="wrapperLeftSidePhotoCofe"></div>
       </div>
       <div className="WrapperPage">
-        <div className="wrapperElMeCofe">
+        {/* <div className="wrapperElMeCofe">
           <Image
             src={PhotoMeCofe.src}
             alt="TextPhotoCoffe"
@@ -193,34 +229,136 @@ export default function MeCofeAccount() {
               height={65}
             />
           )}
-        </div>
-        <section className="MeCofeOrders">
-          <div className="wrapperOrders">
-            {coffeeOrders.map((order, index) => (
-              <div key={index} className="WrapperSec">
-                <div className="PhotoWrapper">
-                  <Image
-                    src={order.img}
-                    alt="TextPhotoCoffe"
-                    width={230}
-                    height={260}
-                    className="Image"
-                  />
-                </div>
+        </div> */}
 
-                <div className="TextAboutCofePage">
-                  <div className="wrapperText">
-                    <a
-                      className="valueName"
-                      href={`/cofe/${order.id}`}
-                      target="_blank"
-                    >
-                      {order.name}
-                    </a>
-                    <p className="valuetype">{order.type}</p>
-                    <p className="value">{order.paste}</p>
+        <section className="WrapperOrderSection">
+          <div className="Placing-an-order">
+            <h1 className="HeaderPlacing">Оформлення замовлення</h1>
+            <div className="InputBlock56">
+              <span className="NumberOrderBlock">1</span>
+              <h3 className="SubHeader">Особисті дані</h3>
+            </div>
+            <div className="Regularcustomer?">
+              <p className="Regularcustomer2">Постійний клієнт?</p>
+            </div>
+            <div className="Input">
+              <input
+                placeholder="E-mail"
+                className="InputTextValid"
+                name="E-mail"
+              />
+              <input placeholder="Імя" className="InputTextValid" name="Імя" />
+              <input
+                placeholder="Прізвище"
+                className="InputTextValid"
+                name="Прізвище"
+              />
+              <input
+                placeholder="Країна"
+                className="InputTextValid"
+                name="Країна"
+              />
+              <input
+                placeholder="+380 __ ___ ____"
+                className="InputTextValid"
+                name="number"
+              />
+            </div>
+            <hr />
+          </div>
+          <div className="Placing-an-order">
+            <div className="InputBlock56">
+              <span className="NumberOrderBlock">2</span>
+              <h3 className="SubHeader">Доставка</h3>
+            </div>
+
+            <div className="Input">
+              <input
+                ref={inputRef}
+                className="InputTextValidCountry"
+                name="E-mail"
+                defaultValue={"Україна"}
+              />
+            </div>
+            <p className="Change">
+              Для вибору способу доставки спочатку виберіть місто доставки
+            </p>
+            <hr />
+          </div>
+          <div className="Placing-an-order">
+            <div className="InputBlock56">
+              <span className="NumberOrderBlock">3</span>
+              <h3 className="SubHeader">Спосіб оплати</h3>
+            </div>
+
+            <div className="InputCard">
+              <FormControl>
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio />}
+                    label="Картою (MonoBank)"
+                  />
+                </RadioGroup>
+              </FormControl>
+            </div>
+
+            <hr />
+          </div>
+          <section className="BusKet">
+            <section className="BuySecOrder">
+              <button className="BuyBtn">Оформити замовлення</button>
+            </section>
+          </section>
+        </section>
+
+        <div className="PayBlock">
+          <h1 className="BusketHeader">Кошик</h1>
+
+          <div className="WrapperElCofe">
+            {coffeeOrders.map((order, index) => (
+              <div className="AnotherWrap">
+                <div className="FunderWrapper">
+                  <div key={index} className="WrapperSec">
+                    <div className="PhotoWrapper">
+                      <Image
+                        src={order.img}
+                        alt="TextPhotoCoffe"
+                        width={150}
+                        height={170}
+                        className="Image"
+                      />
+                    </div>
+
+                    <div className="TextAboutCofePage">
+                      <a
+                        className="valueName"
+                        href={`/cofe/${order.id}`}
+                        target="_blank"
+                      >
+                        {order.name}
+                      </a>
+                    </div>
+                    <div className="WrapperGoTrash">
+                      <GoTrash
+                        onClick={() => handleRemoveOrder(order.id)}
+                        width={80}
+                        size={20}
+                        height={65}
+                        fill="black"
+                        className="Prash"
+                      />
+                    </div>
                   </div>
-                  <section className="counter_game">
+                  <div className="Pomel">
+                    <p className="HeaderPomel">ТИП ПОМЕЛУ</p>
+                    <p className="valuetype2">{order.type}</p>
+                  </div>
+                  <div className="CountCofeNumber">
                     <div className="WrapperBlockCounter">
                       <p className="quantityCofe">{order.quantity || 0}</p>
                       <div className="WrapperControlBtn">
@@ -236,119 +374,34 @@ export default function MeCofeAccount() {
                       </div>
                     </div>
                     <div className="PriceElCofe">
-                      <p className="value">₴{order.price}</p>
+                      <p className="value3">₴{order.price}</p>
                     </div>
-                    <div className="WrapperGoTrash">
-                      <GoTrash
-                        onClick={() => handleRemoveOrder(order.id)}
-                        width={80}
-                        size={20}
-                        height={65}
-                        className="Prash"
-                      />
-                    </div>
-                  </section>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-        </section>
-      </div>
-      <section className="BusKet">
-        <header className="HeaderText">
-          <p className="BusketHeader">Кошик</p>
-        </header>
-        <main>
-          <p className="ContactsData">Контактні дані</p>
-          <section className="InputSection">
-            <div className="NameWrapper">
-              <span className="Layoutblock">
-                <div className="FormTitle">
-                  <span>Iмя</span>
-                  <span className="Star">*</span>
-                </div>
 
-                <input placeholder="Iмя" className="InputBlock" type="name" />
-              </span>
+          <div className="Hello">
+            <div className="PriceBlock">
+              <p className="Almostgenerally">
+                <span className="SpanAlmostgenerally">
+                  Майже загально: ${totalPrice.toFixed(2)}
+                </span>
+              </p>
+              <p className="Almostgenerally">
+                <span className="SpanAlmostgenerally">
+                  Вартість доставки: $0.00
+                </span>
+              </p>
             </div>
-            <div className="NameWrapper">
-              {" "}
-              <span className="Layoutblock">
-                <div className="FormTitle">
-                  <span>Прізвище</span>
-                  <span>*</span>
-                </div>
-
-                <input
-                  placeholder="Прізвище"
-                  className="InputBlock"
-                  type="lastName"
-                />
-              </span>
-            </div>
-            <div className="NameWrapper">
-              {" "}
-              <span className="Layoutblock">
-                <div className="FormTitle">
-                  <span>Email</span>
-                  <span>*</span>
-                </div>
-
-                <input
-                  placeholder="Email"
-                  className="InputBlock"
-                  type="email"
-                />
-              </span>
-            </div>
-            <div className="NameWrapper">
-              {" "}
-              <span className="Layoutblock">
-                <div className="FormTitle">
-                  <span>Мобільний</span>
-                  <span>*</span>
-                </div>
-                <input
-                  placeholder="Мобільний"
-                  className="InputBlock"
-                  type="mobile"
-                />
-              </span>
-            </div>
-            <div className="NameWrapper">
-              {" "}
-              <span className="Layoutblock">
-                <div className="FormTitle">
-                  <span>Коментар</span>
-                  <span>*</span>
-                </div>
-
-                <input
-                  placeholder="Коментар"
-                  className="InputBlock"
-                  type="Comment"
-                />
-              </span>
-            </div>
-          </section>
-        </main>
-        <section className="BuySecOrder">
-          <button className="BuyBtn">Купити</button>
-          <div className="PriceBlock">
-            <p className="Almostgenerally">
-              <span className="SpanAlmostgenerally">
-                Майже загально: ${totalPrice.toFixed(2)}
-              </span>
-            </p>
-            <p className="Almostgenerally">
-              <span className="SpanAlmostgenerally">
-                Вартість доставки: $0.00
-              </span>
+            <p className="TotalPrice">
+              Загальна ціна: ${totalPrice.toFixed(2)}
             </p>
           </div>
-          <p className="TotalPrice">Загальна ціна: ${totalPrice.toFixed(2)}</p>
-        </section>
-      </section>
+        </div>
+      </div>
+
       <Footer />
     </div>
   );

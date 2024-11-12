@@ -6,10 +6,11 @@
   color: black;
 }
 .WrapperPage {
-  flex-direction: column;
-  align-items: center;
+  padding-top: 2em;
+  padding-left: 4em;
+  padding-right: 4em;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 .About {
   width: 100vw;
@@ -44,15 +45,16 @@
   text-transform: uppercase;
 }
 
-.value {
-  font-size: 0.9375rem;
+.value3 {
+  font-weight: 600;
+  color: black;
+  font-size: 1.4375rem;
   line-height: 1.21875rem;
 }
 .valueName:hover {
   cursor: pointer;
-  text-decoration: underline;
   font-weight: 600;
-  font-size: 1.1375rem;
+  font-size: 1.5375rem;
   line-height: 1.21875rem;
 }
 
@@ -60,7 +62,9 @@
 .valuetype {
   padding-bottom: 1em;
   font-weight: 600;
-  font-size: 1.1375rem;
+  text-decoration: underline;
+
+  font-size: 1.5375rem;
   line-height: 1.21875rem;
 }
 
@@ -74,10 +78,10 @@
   background-color: bisque;
 }
 .TextAboutCofePage {
-  margin-right: 10px;
-  min-width: 362px;
-  display: grid;
-  align-content: space-between;
+  min-width: 170px;
+  color: black;
+  display: flex;
+  align-items: center;
 }
 header {
   color: black;
@@ -104,14 +108,24 @@ header {
 }
 
 .BuyBtn {
+  border-color: transparent;
   box-shadow: transparent;
-  background-color: red;
+  background-color: bisque;
   font-size: 16px;
-  border-radius: 7px;
+  padding: 0.7em 2em;
+  cursor: pointer;
+}
+
+.BuyBtn:hover {
+  border-color: transparent;
+  box-shadow: transparent;
+  background-color: rgb(250, 212, 167);
+  font-size: 16px;
   padding: 0.7em 2em;
 }
 
 .BusketHeader {
+  color: black;
   padding: 0.5em 1em;
   line-height: 22px;
   font-size: 26px;
@@ -129,7 +143,7 @@ main {
 }
 
 .BuySecOrder {
-  padding: 0.5em 1.7em;
+  padding: 3.5em 0em;
 }
 .Star {
   color: red;
@@ -141,6 +155,8 @@ main {
   display: flex;
 }
 .quantityCofe {
+  color: black;
+  font-weight: 600;
   padding: 0;
   display: inline;
   margin-right: 40px;
@@ -161,6 +177,7 @@ main {
 .add,
 .minus {
   cursor: pointer;
+  color: black;
 }
 .value {
   font-size: 20px;
@@ -174,12 +191,137 @@ main {
 .TotalPrice {
   color: black;
   font-weight: 600;
-  font-size: 22px;
+  font-size: 30px;
 }
 .PriceBlock {
-  padding-top: 2em;
+  padding-top: 20px;
+  padding-bottom: 2em;
   color: black;
 }
 .Almostgenerally {
   padding-bottom: 10px;
+}
+
+.HeaderComponent2 {
+  position: relative;
+  width: 100%;
+  z-index: 10; /* Поставте більше значення, щоб header був зверху */
+  background-color: white; /* Задній фон для видимості */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Легка тінь для відокремлення */
+}
+
+.PayBlock {
+  max-height: 600px;
+  background-color: bisque;
+  padding: 2em;
+}
+.BusketHeader {
+  padding-bottom: 1em;
+}
+.Pomel {
+  font-weight: 600;
+  padding-bottom: 1em;
+  color: BLACK;
+  padding: 0.5em 2.5em;
+}
+.HeaderPomel {
+  padding-bottom: 10px;
+}
+.CountCofeNumber {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.WrapperElCofe {
+  overflow: auto;
+  max-height: 350px;
+}
+
+.Hello {
+  border-top: 0.4px solid gray;
+  padding: 0em 1em;
+}
+.AnotherWrap {
+  border-bottom: 0.4px solid gray;
+  border-top: 0.4px solid gray;
+  padding: 1em 0em;
+}
+
+.HeaderPlacing {
+  text-transform: uppercase;
+  padding-bottom: 30px;
+}
+
+.NumberOrderBlock {
+  margin-right: 2em;
+  color: black;
+  border-radius: 40px;
+  background-color: bisque;
+  padding: 5px 10px;
+}
+.InputBlock56 {
+  display: flex;
+  padding-bottom: 10px;
+  align-items: center;
+}
+.WrapperOrderSection {
+  color: black;
+}
+.Input {
+  padding-bottom: 1em;
+
+  padding-top: 2em;
+  display: grid;
+  column-gap: 180px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.InputCard {
+  padding-bottom: 1em;
+  display: grid;
+  column-gap: 180px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.InputTextValid {
+  display: block;
+  margin-bottom: 25px;
+  width: 150%;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 7px 15px 5px;
+  border: none;
+  border: 1px solid transparent;
+  background: #ececec;
+  color: #004235;
+  font-size: 16px;
+  outline: none;
+  font-family: "Gilroy";
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.InputTextValidCountry {
+  display: block;
+  width: 150%;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 7px 15px 5px;
+  border: none;
+  border: 1px solid transparent;
+  background: #ececec;
+  color: #004235;
+  font-size: 16px;
+  outline: none;
+  font-family: "Gilroy";
+  transition: border-color 0.3s, background 0.3s;
+  background-color: transparent;
+  border: 1px solid black;
+}
+
+.Placing-an-order {
+  padding-top: 2em;
+}
+
+.Change {
+  padding-bottom: 2.5em;
 }

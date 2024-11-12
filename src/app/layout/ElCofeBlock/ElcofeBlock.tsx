@@ -2,6 +2,7 @@ import "./ElMenuCofe.css";
 import Link from "next/link";
 import Image from "next/image";
 import { CofeList } from "../../(api)/CofeApi";
+import { Span } from "next/dist/trace";
 
 const Elcofe = () => {
   return (
@@ -9,6 +10,7 @@ const Elcofe = () => {
       <div className="content-isideAword2">
         <header className="headerTextAword56">
           <h1 className="headerTextAword23">Краща кава:</h1>
+          <span className="SortBy">Сортувати за</span>
         </header>
         <div className="wrapperSubheaderTextAword23">
           {CofeList.map((i) => (
