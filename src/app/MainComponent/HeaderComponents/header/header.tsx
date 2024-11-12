@@ -6,7 +6,11 @@ import Facebook from "../../../Svg/Vector (1).png";
 import Image from "next/image";
 import Link from "next/link";
 import Tooltip from "@mui/material/Tooltip";
+import { IoBasketOutline } from "react-icons/io5";
+import useCountCofe from "@/app/store/countCofe";
 const Header = () => {
+  const countCofe = useCountCofe((state) => state.CountCofe);
+
   return (
     <>
       <section className={styles.wrapperMain}>
@@ -28,6 +32,11 @@ const Header = () => {
           <div className={styles.SocBlock}>
             <nav>
               <ul className={styles.Ul}>
+                <Link href="/meaccount">
+                  <IoBasketOutline color="#d27487" size={35} />
+                  <span className="basketCount">{countCofe}</span>
+                </Link>
+
                 <li className={styles.ulLi}>
                   <Tooltip title="Add" arrow>
                     <Image
