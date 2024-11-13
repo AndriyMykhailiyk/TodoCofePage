@@ -1,23 +1,23 @@
 "use client";
-
 import styles from "./page.module.css";
-import Main from "./MainComponent/Main";
-import AboutUs from "./layout/AboutUs/AboutUs";
-import Menu from "./layout/MenuComponnets/Menu";
-import PhotoComponent from "./layout/PhotoComponents/PhotoComponent";
-import Footer from "./MainComponent/footer/Footer";
-import Elcofe from "./layout/ElCofeBlock/ElcofeBlock";
+import dynamic from 'next/dynamic';
+import { memo } from "react";
+const Main = memo(dynamic(() => import('./MainComponent/Main')));
+const AboutUs = memo(dynamic(() => import('./layout/AboutUs/AboutUs')));
+const Menu = memo(dynamic(() => import('./layout/MenuComponnets/Menu')));
+const PhotoComponent = memo(dynamic(() => import('./layout/PhotoComponents/PhotoComponent')));
+const Footer = memo(dynamic(() => import('./MainComponent/footer/Footer')));
+const Elcofe = memo(dynamic(() => import('./layout/ElCofeBlock/ElcofeBlock')));
+
 export default function Home() {
   return (
-    <>
-      <section className={styles.wrapper}>
-        <Main />
-        <AboutUs />
-        <Menu />
-        <PhotoComponent />
-        <Elcofe />
-        <Footer />
-      </section>
-    </>
+    <section className={styles.wrapper}>
+      <Main />
+      <AboutUs />
+      <Menu />
+      <PhotoComponent />
+      <Elcofe />
+      <Footer />
+    </section>
   );
 }

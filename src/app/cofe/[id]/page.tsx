@@ -197,6 +197,7 @@ const CoffeeDetail = () => {
               style={{
                 textDecoration: index < 2 ? "underline" : "none", // Перші два елементи підкреслені завжди
                 textDecorationColor: index < 2 ? "inherit" : "none", // Колір підкреслення
+                padding: 0,
                 textDecorationThickness: index < 2 ? "auto" : "none", // Товщина підкреслення
               }}
             >
@@ -374,6 +375,7 @@ const CoffeeDetail = () => {
         </div>
       </section>
       <Elcofe />
+      <div style={{paddingBottom: "6em"}}></div>
       <Footer />
       <Snackbar
         open={promoSnackbarOpen}

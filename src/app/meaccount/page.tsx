@@ -74,14 +74,40 @@ export default function MeCofeAccount() {
     }
   }, []);
 
+
+
+
+
+
+  useEffect(() => {
+    localStorage.setItem("countCofe", countCofe.toString());
+  }, [countCofe]);
+
+  useEffect(() => {
+    const savedCountCofe = localStorage.getItem("countCofe");
+    if (savedCountCofe) {
+      useCountCofe.setState({ CountCofe: parseInt(savedCountCofe, 10) });
+    }
+  }, []);
+
+
+
+
+
+
+
+
   const handleRemoveOrder = (orderId: number) => {
+    const orderToRemove = coffeeOrders.find((order) => order.id === orderId);
+    if (orderToRemove) {
+      useCountCofe.setState({ CountCofe: countCofe - (orderToRemove.quantity || 0) });
+    }
     const updatedOrders = coffeeOrders.filter((order) => order.id !== orderId);
     setCoffeeOrders(updatedOrders);
     localStorage.setItem("CoffeeOrders", JSON.stringify(updatedOrders));
     setSnackbarMessage("Товар видалено з корзини");
     setSnackbarOpen(true);
   };
-
   const combinedData = useMemo(
     () => ({
       DarkChoko,
@@ -146,7 +172,7 @@ export default function MeCofeAccount() {
       )
     );
   };
-
+  
   const handleDecrement = (orderId: number) => {
     setCoffeeOrders((prevOrders) =>
       prevOrders.map((order) =>
@@ -156,6 +182,14 @@ export default function MeCofeAccount() {
       )
     );
   };
+
+
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("countCofe", countCofe.toString());
+    }
+  }, [countCofe]);
 
   const totalPrice = coffeeOrders.reduce(
     (total, order) => total + (order.price || 0) * (order.quantity || 0),
@@ -349,7 +383,7 @@ export default function MeCofeAccount() {
                         width={80}
                         size={20}
                         height={65}
-                        fill="black"
+                        fill="red"
                         className="Prash"
                       />
                     </div>

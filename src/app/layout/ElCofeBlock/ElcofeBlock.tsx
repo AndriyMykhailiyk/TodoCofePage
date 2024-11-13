@@ -223,16 +223,18 @@ export default function CoffeeList() {
                     <p>{i.type}</p>
                     <h3 className="PriceBlock">${i.price}</h3>
                   </div>
-                  <div className="wrapperBtn">
-                    <button
-                      className="NexPageBtn"
+                  <span className="wrapperBtn2">
+                    <FaShoppingCart
+                      size={28}
                       onClick={() => HandleKlickBtn(i)}
-                    >
-                      {coffeeOrders.some((order) => order.id === i.id)
-                        ? "Прибрати з корзини"
-                        : "Додати до списку"}
-                    </button>
-                  </div>
+                      className="BuyCofe"
+                      fill={
+                        coffeeOrders.some((order) => order.id === i.id)
+                          ? "red"
+                          : "green"
+                      }
+                    />
+                  </span>
                 </li>
               </ul>
             ))}
@@ -269,16 +271,18 @@ export default function CoffeeList() {
                   <p>{i.type}</p>
                   <h3 className="PriceBlock">${i.price}</h3>
                 </div>
-                <div className="wrapperBtn">
-                  <button
-                    className="NexPageBtn"
-                    onClick={() => HandleKlickBtn(i)}
-                  >
-                    {coffeeOrders.some((order) => order.id === i.id)
-                      ? "Прибрати з корзини"
-                      : "Додати до списку"}
-                  </button>
-                </div>
+                <span className="wrapperBtn2">
+                    <FaShoppingCart
+                      size={28}
+                      onClick={() => HandleKlickBtn(i)}
+                      className="BuyCofe"
+                      fill={
+                        coffeeOrders.some((order) => order.id === i.id)
+                          ? "red"
+                          : "green"
+                      }
+                    />
+                  </span>
               </li>
             </ul>
           ))}
@@ -314,16 +318,18 @@ export default function CoffeeList() {
                   <p>{i.type}</p>
                   <h3 className="PriceBlock">${i.price}</h3>
                 </div>
-                <div className="wrapperBtn">
-                  <button
-                    className="NexPageBtn"
-                    onClick={() => HandleKlickBtn(i)}
-                  >
-                    {coffeeOrders.some((order) => order.id === i.id)
-                      ? "Прибрати з корзини"
-                      : "Додати до списку"}
-                  </button>
-                </div>
+                <span className="wrapperBtn2">
+                    <FaShoppingCart
+                      size={28}
+                      onClick={() => HandleKlickBtn(i)}
+                      className="BuyCofe"
+                      fill={
+                        coffeeOrders.some((order) => order.id === i.id)
+                          ? "red"
+                          : "green"
+                      }
+                    />
+                  </span>
               </li>
             </ul>
           ))}
@@ -363,15 +369,15 @@ export default function CoffeeList() {
                     <p>{i.type}</p>
                     <h3 className="PriceBlock">${i.price}</h3>
                   </div>
-                  <span className="wrapperBtn">
+                  <span className="wrapperBtn2">
                     <FaShoppingCart
                       size={28}
                       onClick={() => HandleKlickBtn(i)}
                       className="BuyCofe"
                       fill={
                         coffeeOrders.some((order) => order.id === i.id)
-                          ? "red"
-                          : "green"
+                          ? "green"
+                          : "red"
                       }
                     />
                   </span>
@@ -392,13 +398,13 @@ export default function CoffeeList() {
           Назад
         </button>
         {Array.from({ length: totalPages }, (_, index) => (
-          <button
+          <p
             key={index + 1}
             onClick={() => goToPage(index + 1)}
             className={currentPage === index + 1 ? "active" : "noactive"}
           >
             {index + 1}
-          </button>
+          </p>
         ))}
         <button
           onClick={goToNextPage}
