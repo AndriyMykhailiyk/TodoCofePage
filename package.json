@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "coffe",
   "version": "0.1.0",
   "private": true,
@@ -26,5 +27,9 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "typescript": "^5"
+=======
+  "dependencies": {
+    "downshift": "^9.0.8"
+>>>>>>> 017a09d (commit message)
   }
 }
