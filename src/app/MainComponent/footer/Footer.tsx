@@ -70,7 +70,7 @@ const Footer = () => {
               <ul className="wrapper-ul-fotter">
                 <li className="noCopiratingEl">
                   <a className="a-el" href="#LatteCafe">
-                  © 2024 Інтернет-крамниця "Супер кава"
+                    © 2024 Інтернет-крамниця &quot;Супер кава&quot;
                   </a>
                 </li>
                 <li>

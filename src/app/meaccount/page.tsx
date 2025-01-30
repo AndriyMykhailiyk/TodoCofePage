@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useLiked, useSetName } from "../store/cindstore";
+import { useLiked } from "../store/cindstore";
 import { useTypeCofe, useTypeCofeTwo } from "../store/store";
 import { GoTrash } from "react-icons/go";
 import Image from "next/image";
@@ -34,9 +34,8 @@ export default function MeCofeAccount() {
   const Cofeinnn = useTypeCofe((state) => state.Cofeinnn);
   const TypeCofeTwo = useTypeCofeTwo((state) => state.TypeCofeTwo);
   const HowyouLikedCofe = useLiked((state) => state.HowyouLikedCofe);
-  const MeCofeName = useSetName((state) => state.MeCofeName);
   const [isButtonVisible, setButtonVisible] = useState(true);
-  const [isBlockVisible, setBlockVisible] = useState(true);
+  const [isBlockVisible] = useState(true);
   const [coffeeOrders, setCoffeeOrders] = useState<CoffeeOrder[]>([]);
   const [, setSnackbarMessage] = useState("");
   const [, setSnackbarOpen] = useState(false);
@@ -140,12 +139,6 @@ export default function MeCofeAccount() {
       )
     );
   };
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("countCofe", countCofe.toString());
-    }
-  }, [countCofe]);
 
   const totalPrice = coffeeOrders.reduce(
     (total, order) => total + (order.price || 0) * (order.quantity || 0),
@@ -311,7 +304,7 @@ export default function MeCofeAccount() {
 
           <div className="WrapperElCofe">
             {coffeeOrders.map((order, index) => (
-              <div className="AnotherWrap">
+              <div className="AnotherWrap" key={index}>
                 <div className="FunderWrapper">
                   <div key={index} className="WrapperSec">
                     <div className="PhotoWrapper">

@@ -4,7 +4,6 @@ import Image, { StaticImageData } from "next/image";
 import { CofeList } from "../../(api)/CofeApi";
 import "./ElMenuCofe.css";
 import { BsSortDownAlt } from "react-icons/bs";
-import { useParams } from "next/navigation";
 import { FaShoppingCart } from "react-icons/fa";
 import { Alert, Snackbar } from "@mui/material";
 
@@ -16,8 +15,6 @@ export default function CoffeeList() {
   const [loPrice, setloPrice] = useState(false);
   const [topPrice, setTopPrice] = useState(false);
   const [Popular, setPopular] = useState(false);
-  const params = useParams();
-  const id = params.id;
   const [coffeeOrders, setCoffeeOrders] = useState<CoffeeOrder[]>([]);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -106,15 +103,6 @@ export default function CoffeeList() {
 
   const HandleKlickBtn = (coffee: CoffeeOrder) => {
     if (typeof window !== "undefined") {
-      const coffeeOrder: CoffeeOrder = {
-        id: coffee.id,
-        name: coffee.name,
-        price: coffee.price,
-        img: typeof coffee.img === "string" ? coffee.img : coffee.img, // Перетворюємо img на рядок
-        type: coffee.type,
-        paste: coffee.paste,
-      };
-
       const isAlreadyAdded = coffeeOrders.some(
         (order) => order.id === coffee.id
       );

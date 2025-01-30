@@ -74,7 +74,7 @@ const Menu = () => {
     setAcivemenu(false);
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setValues((prevValues) => ({
@@ -91,10 +91,10 @@ const Menu = () => {
     }
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    let newErrors: any = {};
+    const newErrors: any = {};
     let hasError = false;
 
     // Перевірка, чи є поля порожніми, і встановлення повідомлення про помилку
