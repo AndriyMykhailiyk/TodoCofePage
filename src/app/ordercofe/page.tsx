@@ -61,29 +61,29 @@ export default function OrderCofe() {
     }
   }, [DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe]);
 
-  if (typeof window !== "undefined") {
-    useEffect(() => {
-      const savedOrder = localStorage.getItem("CoffeeOrder");
-      const savedName = localStorage.getItem("MeCofeName");
+  useEffect(() => {
+    const savedOrder = localStorage.getItem("CoffeeOrder");
+    const savedName = localStorage.getItem("MeCofeName");
 
-      if (savedName) {
-        setCofePage(savedName); // Використовуємо збережену функцію
-      }
+    if (!savedName) {
+      setShowModal(true);
+    } else {
+      setCofePage(savedName); // Використовуємо збережену функцію
+    }
 
-      if (savedOrder) {
+    if (savedOrder) {
+      try {
         const { DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe } =
           JSON.parse(savedOrder);
 
         useTypeCofe.setState({ DarkChoko, Cofeinnn });
         useTypeCofeTwo.setState({ TypeCofeTwo });
         useLiked.setState({ HowyouLikedCofe });
+      } catch (error) {
+        console.error("Помилка парсингу CoffeeOrder:", error);
       }
-
-      if (!savedName) {
-        setShowModal(true);
-      }
-    }, [setCofePage]);
-  }
+    }
+  }, [setCofePage]);
 
   const handleModalSubmit = (name: string) => {
     setCofePage(name);
