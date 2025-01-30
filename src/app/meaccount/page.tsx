@@ -1,12 +1,10 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLiked, useSetName } from "../store/cindstore";
 import { useTypeCofe, useTypeCofeTwo } from "../store/store";
 import { GoTrash } from "react-icons/go";
 import Image from "next/image";
-import { useRouter } from "next/navigation"; // Імпорт useRouter
 import "./meaccount.css";
-import PhotoMeCofe from "./cofephoto/kawa_BEANS.png";
 import { MdOutlineArrowDropUp } from "react-icons/md";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import Footer from "../MainComponent/footer/Footer";
@@ -14,14 +12,12 @@ import "../MainComponent/footer/Footer.css";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
 import { IoBasketOutline } from "react-icons/io5";
-import Header from "../cofe/headercofe/header";
 import "../ordercofe/order.css";
 import React, { useRef } from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import useCountCofe from "../store/countCofe";
 interface CoffeeOrder {
   id: number;
@@ -42,7 +38,6 @@ export default function MeCofeAccount() {
   const [isButtonVisible, setButtonVisible] = useState(true);
   const [isBlockVisible, setBlockVisible] = useState(true);
   const [coffeeOrders, setCoffeeOrders] = useState<CoffeeOrder[]>([]);
-  const router = useRouter(); // Ініціалізація useRouter
   const [, setSnackbarMessage] = useState("");
   const [, setSnackbarOpen] = useState(false);
   const countCofe = useCountCofe((state) => state.CountCofe);
@@ -74,11 +69,6 @@ export default function MeCofeAccount() {
     }
   }, []);
 
-
-
-
-
-
   useEffect(() => {
     localStorage.setItem("countCofe", countCofe.toString());
   }, [countCofe]);
@@ -90,17 +80,12 @@ export default function MeCofeAccount() {
     }
   }, []);
 
-
-
-
-
-
-
-
   const handleRemoveOrder = (orderId: number) => {
     const orderToRemove = coffeeOrders.find((order) => order.id === orderId);
     if (orderToRemove) {
-      useCountCofe.setState({ CountCofe: countCofe - (orderToRemove.quantity || 0) });
+      useCountCofe.setState({
+        CountCofe: countCofe - (orderToRemove.quantity || 0),
+      });
     }
     const updatedOrders = coffeeOrders.filter((order) => order.id !== orderId);
     setCoffeeOrders(updatedOrders);
@@ -108,15 +93,6 @@ export default function MeCofeAccount() {
     setSnackbarMessage("Товар видалено з корзини");
     setSnackbarOpen(true);
   };
-  const combinedData = useMemo(
-    () => ({
-      DarkChoko,
-      Cofeinnn,
-      TypeCofeTwo,
-      HowyouLikedCofe,
-    }),
-    [DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe]
-  );
 
   useEffect(() => {
     const SavedDarkChoko = localStorage.getItem("DarkChoko");
@@ -143,24 +119,6 @@ export default function MeCofeAccount() {
     localStorage.setItem("isButtonVisible", JSON.stringify(isButtonVisible));
   }, [DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe, isButtonVisible]);
 
-  const handleDeleteAll = () => {
-    useTypeCofe.setState({ DarkChoko: "", Cofeinnn: "" });
-    useTypeCofeTwo.setState({ TypeCofeTwo: [] });
-    useLiked.setState({ HowyouLikedCofe: "" });
-
-    localStorage.removeItem("DarkChoko");
-    localStorage.removeItem("Cofeinnn");
-    localStorage.removeItem("TypeCofeTwo");
-    localStorage.removeItem("HowyouLikedCofe");
-    localStorage.removeItem("CoffeeOrders");
-
-    setButtonVisible(false);
-    setBlockVisible(false);
-
-    // Перенаправлення на головну сторінку
-    router.push("/");
-  };
-
   if (!isBlockVisible) return null;
 
   const handleIncrement = (orderId: number) => {
@@ -172,7 +130,7 @@ export default function MeCofeAccount() {
       )
     );
   };
-  
+
   const handleDecrement = (orderId: number) => {
     setCoffeeOrders((prevOrders) =>
       prevOrders.map((order) =>
@@ -182,8 +140,6 @@ export default function MeCofeAccount() {
       )
     );
   };
-
-
 
   useEffect(() => {
     if (typeof window !== "undefined") {

@@ -22,7 +22,7 @@ export default function CoffeeList() {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [promoSnackbarOpen, setPromoSnackbarOpen] = useState(false);
-  const [promoSnackbarMessage, setPromoSnackbarMessage] = useState("");
+  const [promoSnackbarMessage] = useState("");
 
   const totalItems = CofeList.length;
   const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
@@ -272,17 +272,17 @@ export default function CoffeeList() {
                   <h3 className="PriceBlock">${i.price}</h3>
                 </div>
                 <span className="wrapperBtn2">
-                    <FaShoppingCart
-                      size={28}
-                      onClick={() => HandleKlickBtn(i)}
-                      className="BuyCofe"
-                      fill={
-                        coffeeOrders.some((order) => order.id === i.id)
-                          ? "red"
-                          : "green"
-                      }
-                    />
-                  </span>
+                  <FaShoppingCart
+                    size={28}
+                    onClick={() => HandleKlickBtn(i)}
+                    className="BuyCofe"
+                    fill={
+                      coffeeOrders.some((order) => order.id === i.id)
+                        ? "red"
+                        : "green"
+                    }
+                  />
+                </span>
               </li>
             </ul>
           ))}
@@ -319,17 +319,17 @@ export default function CoffeeList() {
                   <h3 className="PriceBlock">${i.price}</h3>
                 </div>
                 <span className="wrapperBtn2">
-                    <FaShoppingCart
-                      size={28}
-                      onClick={() => HandleKlickBtn(i)}
-                      className="BuyCofe"
-                      fill={
-                        coffeeOrders.some((order) => order.id === i.id)
-                          ? "red"
-                          : "green"
-                      }
-                    />
-                  </span>
+                  <FaShoppingCart
+                    size={28}
+                    onClick={() => HandleKlickBtn(i)}
+                    className="BuyCofe"
+                    fill={
+                      coffeeOrders.some((order) => order.id === i.id)
+                        ? "red"
+                        : "green"
+                    }
+                  />
+                </span>
               </li>
             </ul>
           ))}
