@@ -56,36 +56,40 @@ export default function OrderCofe() {
       TypeCofeTwo,
       HowyouLikedCofe,
     };
-
-    localStorage.setItem("CoffeeOrder", JSON.stringify(coffeeOrder));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("CoffeeOrder", JSON.stringify(coffeeOrder));
+    }
   }, [DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe]);
 
-  // Відновлення даних з localStorage
-  useEffect(() => {
-    const savedOrder = localStorage.getItem("CoffeeOrder");
-    const savedName = localStorage.getItem("MeCofeName");
+  if (typeof window !== "undefined") {
+    useEffect(() => {
+      const savedOrder = localStorage.getItem("CoffeeOrder");
+      const savedName = localStorage.getItem("MeCofeName");
 
-    if (savedName) {
-      setCofePage(savedName); // Використовуємо збережену функцію
-    }
+      if (savedName) {
+        setCofePage(savedName); // Використовуємо збережену функцію
+      }
 
-    if (savedOrder) {
-      const { DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe } =
-        JSON.parse(savedOrder);
+      if (savedOrder) {
+        const { DarkChoko, Cofeinnn, TypeCofeTwo, HowyouLikedCofe } =
+          JSON.parse(savedOrder);
 
-      useTypeCofe.setState({ DarkChoko, Cofeinnn });
-      useTypeCofeTwo.setState({ TypeCofeTwo });
-      useLiked.setState({ HowyouLikedCofe });
-    }
+        useTypeCofe.setState({ DarkChoko, Cofeinnn });
+        useTypeCofeTwo.setState({ TypeCofeTwo });
+        useLiked.setState({ HowyouLikedCofe });
+      }
 
-    if (!savedName) {
-      setShowModal(true);
-    }
-  }, [setCofePage]);
+      if (!savedName) {
+        setShowModal(true);
+      }
+    }, [setCofePage]);
+  }
 
   const handleModalSubmit = (name: string) => {
     setCofePage(name);
-    localStorage.setItem("MeCofeName", name);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("MeCofeName", name);
+    }
     setShowModal(false);
   };
 
