@@ -31,6 +31,14 @@ const Menu = () => {
     name4: "",
   });
 
+  interface FormErrors {
+    name1?: string;
+    name2?: string;
+    name3?: string;
+    name4?: string;
+    [key: string]: string | undefined;
+  }
+
   const Handlewritetous = () => {
     setAcivemenu(false);
     setwritetous(true);
@@ -94,7 +102,7 @@ const Menu = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const newErrors: any = {};
+    const newErrors: FormErrors = {};
     let hasError = false;
 
     // Перевірка, чи є поля порожніми, і встановлення повідомлення про помилку
@@ -104,8 +112,6 @@ const Menu = () => {
         hasError = true;
       }
     });
-
-    setErrors(newErrors);
 
     if (!hasError) {
       console.log("Form submitted:", values);
